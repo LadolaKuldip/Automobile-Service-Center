@@ -14,6 +14,8 @@ namespace ACS.DAL.Database
     
     public partial class ServiceBooking
     {
+        internal object _DbContext;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ServiceBooking()
         {
