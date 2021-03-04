@@ -116,7 +116,7 @@
           <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="PickupAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="DropAddress" Type="nvarchar" MaxLength="250" />
-          <Property Name="Feedback" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Feedback" Type="nvarchar" MaxLength="250" />
           <Property Name="VehicleId" Type="int" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
         </EntityType>
@@ -481,7 +481,7 @@
           <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PickupAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DropAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Feedback" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Feedback" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="VehicleId" Type="Int32" Nullable="false" />
           <Property Name="DealerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dealer" Relationship="Self.FK_ServiceBookings_Dealers" FromRole="ServiceBookings" ToRole="Dealers" />

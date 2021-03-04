@@ -62,5 +62,10 @@ namespace ACS.DAL
             cfg.CreateMap<Brand, Database.Brand>();
             cfg.CreateMap<Database.Brand, Brand>();
         }));
+
+        public static Mapper ServiceBookingMapper = new Mapper(new MapperConfiguration(cfg => {
+            cfg.CreateMap<ServiceBooking, Database.ServiceBooking>();
+            cfg.CreateMap<Database.ServiceBooking, ServiceBooking>();
+        }));
     }
 }
