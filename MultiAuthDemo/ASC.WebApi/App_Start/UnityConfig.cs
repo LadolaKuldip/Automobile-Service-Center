@@ -23,6 +23,7 @@ namespace ASC.WebApi
             container.RegisterType<IServiceManager, ServiceManager>();
             container.RegisterType<IDealerManager, DealerManager>();
             container.RegisterType<IVehicleManager, VehicleManager>();
+            container.RegisterType<IServiceBookingManager, ServiceBookingManager>();
             container.AddNewExtension<UnityRepositoryHelper>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

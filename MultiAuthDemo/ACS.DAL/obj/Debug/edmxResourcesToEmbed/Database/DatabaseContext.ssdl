@@ -111,7 +111,7 @@
     <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="PickupAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="DropAddress" Type="nvarchar" MaxLength="250" />
-    <Property Name="Feedback" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Feedback" Type="nvarchar" MaxLength="250" />
     <Property Name="VehicleId" Type="int" Nullable="false" />
     <Property Name="DealerId" Type="int" Nullable="false" />
   </EntityType>

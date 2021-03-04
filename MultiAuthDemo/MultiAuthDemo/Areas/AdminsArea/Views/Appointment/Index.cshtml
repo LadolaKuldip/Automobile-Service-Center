@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@section scripts{
+    
+
+
+    <script>
+    $(document).ready(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "onclick": null,
+            "showDuration": "200",
+            "hideDuration": "1500",
+            "timeOut": "6000",
+            "extendedTimeOut": "1200",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        var Type = "@TempData["Type"]";
+        var Message = "@TempData["Message"]";
+        if (Type == "0") {
+            toastr.success(Message, 'The Site Says')
+        } else if (Type == "1") {
+            toastr.info(Message, 'The Site Says')
+        } else if (Type == "2") {
+            toastr.warning(Message, 'The Site Says')
+        } else if (Type == "3") {
+            toastr.error(Message, 'Inconceivable!')
+        }
+    });
+    </script>
+}

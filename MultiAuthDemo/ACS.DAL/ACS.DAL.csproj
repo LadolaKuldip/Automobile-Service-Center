@@ -110,6 +110,7 @@
     <Compile Include="Repository\Classes\CustomerRepository.cs" />
     <Compile Include="Repository\Classes\DealerRepository.cs" />
     <Compile Include="Repository\Classes\ModelRepository.cs" />
+    <Compile Include="Repository\Classes\ServiceBookingRepository.cs" />
     <Compile Include="Repository\Classes\ServiceRepository.cs" />
     <Compile Include="Repository\Classes\VehicleRepository.cs" />
     <Compile Include="Repository\Interfaces\IBrandRepository.cs" />
@@ -147,6 +148,7 @@
       <Name>ASC.Entities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Database\DatabaseContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

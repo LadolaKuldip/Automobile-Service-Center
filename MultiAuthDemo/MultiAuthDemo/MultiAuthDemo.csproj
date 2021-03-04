@@ -287,6 +287,7 @@
     <Content Include="Areas\AdminsArea\Views\Vehicle\Edit.cshtml" />
     <Content Include="Areas\UsersArea\Views\User\Vehicles.cshtml" />
     <Content Include="Areas\AdminsArea\Views\Appointment\Create.cshtml" />
+    <Content Include="Areas\AdminsArea\Views\Appointment\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

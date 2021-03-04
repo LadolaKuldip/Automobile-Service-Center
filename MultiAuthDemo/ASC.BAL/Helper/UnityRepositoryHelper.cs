@@ -20,6 +20,7 @@ namespace ASC.BAL.Helper
             Container.RegisterType<IServiceRepository, ServiceRepository>();
             Container.RegisterType<IDealerRepository, DealerRepository>();
             Container.RegisterType<IVehicleRepository, VehicleRepository>();
+            Container.RegisterType<IServiceBookingRepository, ServiceBookingRepository>();
         }
     }
 }

@@ -68,12 +68,14 @@
     <Compile Include="Repository\Classes\CustomerManager.cs" />
     <Compile Include="Repository\Classes\DealerManager.cs" />
     <Compile Include="Repository\Classes\ModelManager.cs" />
+    <Compile Include="Repository\Classes\ServiceBookingManager.cs" />
     <Compile Include="Repository\Classes\ServiceManager.cs" />
     <Compile Include="Repository\Classes\VehicleManager.cs" />
     <Compile Include="Repository\Interfaces\IBrandManager.cs" />
     <Compile Include="Repository\Interfaces\ICustomerManager.cs" />
     <Compile Include="Repository\Interfaces\IDealerManager.cs" />
     <Compile Include="Repository\Interfaces\IModelManager.cs" />
+    <Compile Include="Repository\Interfaces\IServiceBookingManager.cs" />
     <Compile Include="Repository\Interfaces\IServiceManager.cs" />
     <Compile Include="Repository\Interfaces\IVehicleManager.cs" />
   </ItemGroup>

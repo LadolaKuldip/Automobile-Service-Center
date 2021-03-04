@@ -1,4 +1,5 @@
-﻿using ASC.Common;
+﻿using ASC.BAL.Repository.Interfaces;
+using ASC.Common;
 using ASC.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,16 @@ namespace ASC.WebApi.Controllers
     [RoutePrefix("ServiceBooking")]
     public class ServiceBookingController : ApiController
     {
-
+        private readonly IServiceBookingManager _serviceBookingManager;
+        public ServiceBookingController(IServiceBookingManager serviceBookingManager)
+        {
+            _serviceBookingManager = serviceBookingManager;
+        }
         [HttpPost]
         [Route("Create")]
         public IHttpActionResult Create(ServiceBookingModel serviceBookingModel)
         {
-            string response = "";
+            string response = _serviceBookingManager.AddBooking(serviceBookingModel);
             if (response == "already")
             {
                 return Conflict();
