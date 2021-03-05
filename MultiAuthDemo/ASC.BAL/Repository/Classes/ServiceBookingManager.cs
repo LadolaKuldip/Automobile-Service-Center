@@ -1,11 +1,8 @@
 ﻿using ACS.DAL.Repository.Interfaces;
 using ASC.BAL.Repository.Interfaces;
 using ASC.Common;
-using System;
+using ASC.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASC.BAL.Repository.Classes
 {
@@ -20,6 +17,16 @@ namespace ASC.BAL.Repository.Classes
         public string AddBooking(ServiceBookingModel serviceBookingModel)
         {
             return _serviceBookingRepository.AddBooking(serviceBookingModel);
+        }
+
+        public IEnumerable<ServiceBooking> GetBookings()
+        {
+            return _serviceBookingRepository.GetBookings();
+        }
+
+        public ServiceBookingDetailModel GetDetail(int id)
+        {
+            return _serviceBookingRepository.GetDetail(id);
         }
     }
 }

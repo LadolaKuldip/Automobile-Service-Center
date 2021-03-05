@@ -148,7 +148,6 @@
       <Name>ASC.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Database\DatabaseContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

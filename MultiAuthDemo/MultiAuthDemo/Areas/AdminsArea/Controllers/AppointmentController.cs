@@ -1,12 +1,9 @@
 ﻿using ASC.Common;
 using ASC.Entities;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MultiAuthDemo.Areas.AdminsArea.Controllers
@@ -16,7 +13,31 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
         // GET: AdminsArea/Appointment
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<ServiceBooking> serviceBookings;
+             
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("https://localhost:44318/ServiceBooking/");
+                //HTTP GET
+                var responseTask = client.GetAsync("Get");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IEnumerable<ServiceBooking>>();
+                    readTask.Wait();
+                    serviceBookings = readTask.Result;
+                }
+                else
+                {
+                    serviceBookings = Enumerable.Empty<ServiceBooking>();
+                    ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
+                }
+            }
+
+            return View(serviceBookings);
         }
 
         // GET: AdminsArea/Appointment/Create
@@ -85,7 +106,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 Dealers = dealers,
                 Services = services
             };
-            return PartialView(appointment);
+            return View(appointment);
         }
 
 
@@ -124,6 +145,34 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 return View();
             }
             
+        }
+
+        // GET: AdminsArea/Appointment/Details/5
+        public ActionResult Details(int id)
+        {
+            ServiceBookingDetailModel model;
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("https://localhost:44318/ServiceBooking/");
+                //HTTP GET
+                var responseTask = client.GetAsync("GetDetail/" + id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<ServiceBookingDetailModel>();
+                    readTask.Wait();
+                    model = readTask.Result;
+                }
+                else
+                {
+                    model = new ServiceBookingDetailModel();
+                    ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
+                }
+            }
+            return PartialView(model);
         }
     }
 }

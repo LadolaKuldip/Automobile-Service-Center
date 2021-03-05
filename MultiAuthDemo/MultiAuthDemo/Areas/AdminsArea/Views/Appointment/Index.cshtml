@@ -1,12 +1,196 @@
-﻿
+﻿@model IEnumerable<ASC.Entities.ServiceBooking>
+
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Template/css/Popup-form.css" rel="stylesheet" />
+<style>
+    .plate {
+        display: block;
+        height: 40px;
+        background-color: #FCE205;
+        box-shadow: 5px 5px 2px #888888;
+        border: 3px solid;
+        border-radius: 5px;
+    }
 
-<h2>Index</h2>
+    .number {
+        text-align: center;
+        padding: 3px 0px;
+        color: #000000;
+        font-family: Trebuchet MS;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container-fluid">
+    <h1 class="mt-4">Appointments</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            <a href='@Url.Action("Create","Appointment")' class="btn btn-danger">
+                <i class="fas fa-plus"></i> Appointment
+            </a>
+        </li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+
+            <i class="fas fa-table mr-1"></i>
+            DataTable Example
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VehicleId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BookingDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReturnDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalAmmount)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.DealerId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="min-width:160px;">
+                                    <div class="plate">
+                                        <div class="number">
+                                            <i class="fas fa-globe-asia" style="color:blue;"></i>
+                                            @Html.DisplayFor(modelItem => item.Vehicle.NumberPlate)
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BookingDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReturnDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalAmmount)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dealer.Name)
+                                </td>
+                                <td>
+                                    @if (item.Status.Equals("Pending"))
+                                    {
+                                        <i class="fas fa-hourglass-half fa-spin" style="color:red;"></i>
+                                    }
+                                    else if (item.Status.Equals("Completed"))
+                                    {
+                                        <i class="fas fas fa-check-double" style="color:green;"></i>
+                                    }
+                                    else if (item.Status.Equals("Approved"))
+                                    {
+                                        <i class="fas fa-check" style="color:blue;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-sync fa-spin" style="color:orange;"></i>
+                                    }
+
+                                </td>
+                                <td>
+                                    <button type="Submit" value="@item.Id" class="Infoform btn btn-info">
+                                        <i class="fas fa-info"></i>
+                                    </button>
+                                    <a href='@Url.Action("Edit","Appointment", new { id = item.Id })' class="btn btn-warning">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href='@Url.Action("Delete","Appointment", new { id = item.Id })' class="btn btn-danger">
+                                        <i class="fas fa-toggle-off"></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BookingDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReturnDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalAmmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VehicleId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DealerId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="myModal" class="modal" style="width:100%; padding-right:1%;padding-left:10%;">
+
+</div>
+
 
 @section scripts{
-    
+    <script>
+        $(document).ready(function () {
+
+            $(".Infoform").click(function (evt) {
+                var CatID = $(this).val();
+                $.get('@Url.Action("Details", "Appointment")?id=' + CatID, function(data) {
+                    $('#myModal').html(data);
+                    $('#myModal').css("display","block");
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+    var modal = document.getElementById("myModal");
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                modal.innerHTML = "";
+            }
+        }</script>
+
 
 
     <script>

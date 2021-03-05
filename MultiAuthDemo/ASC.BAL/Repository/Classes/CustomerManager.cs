@@ -2,11 +2,7 @@
 using ASC.BAL.Repository.Interfaces;
 using ASC.Common;
 using ASC.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASC.BAL.Repository.Classes
 {

@@ -1,11 +1,5 @@
 ﻿using ASC.BAL.Repository.Interfaces;
 using ASC.Common;
-using ASC.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace ASC.WebApi.Controllers
@@ -18,6 +12,31 @@ namespace ASC.WebApi.Controllers
         {
             _serviceBookingManager = serviceBookingManager;
         }
+
+        [HttpGet]
+        [Route("Get")]
+        public IHttpActionResult Get()
+        {
+            var response = _serviceBookingManager.GetBookings();
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("GetDetail/{id}")]
+        public IHttpActionResult GetDetail(int id)
+        {
+            var response = _serviceBookingManager.GetDetail(id);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("Create")]
         public IHttpActionResult Create(ServiceBookingModel serviceBookingModel)

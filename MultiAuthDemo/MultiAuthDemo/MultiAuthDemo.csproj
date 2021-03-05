@@ -288,6 +288,7 @@
     <Content Include="Areas\UsersArea\Views\User\Vehicles.cshtml" />
     <Content Include="Areas\AdminsArea\Views\Appointment\Create.cshtml" />
     <Content Include="Areas\AdminsArea\Views\Appointment\Index.cshtml" />
+    <Content Include="Areas\AdminsArea\Views\Appointment\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -306,6 +307,7 @@
     <Content Include="Template\assets\demo\chart-pie-demo.js" />
     <Content Include="Template\assets\demo\datatables-demo.js" />
     <Content Include="Template\assets\img\error-404-monochrome.svg" />
+    <Content Include="Template\css\Appointment-Progressbar.css" />
     <Content Include="Template\css\Popup-form.css" />
     <Content Include="Template\css\styles.css" />
     <Content Include="Template\js\scripts.js" />

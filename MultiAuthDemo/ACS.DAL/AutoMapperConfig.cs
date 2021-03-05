@@ -66,6 +66,21 @@ namespace ACS.DAL
         public static Mapper ServiceBookingMapper = new Mapper(new MapperConfiguration(cfg => {
             cfg.CreateMap<ServiceBooking, Database.ServiceBooking>();
             cfg.CreateMap<Database.ServiceBooking, ServiceBooking>();
+
+            cfg.CreateMap<Dealer, Database.Dealer>();
+            cfg.CreateMap<Database.Dealer, Dealer>();
+
+            cfg.CreateMap<Vehicle, Database.Vehicle>();
+            cfg.CreateMap<Database.Vehicle, Vehicle>();
+
+            cfg.CreateMap<Customer, Database.Customer>();
+            cfg.CreateMap<Database.Customer, Customer>();
+
+            cfg.CreateMap<Model, Database.Model>();
+            cfg.CreateMap<Database.Model, Model>(); 
+
+            cfg.CreateMap<Brand, Database.Brand>();
+            cfg.CreateMap<Database.Brand, Brand>();
         }));
     }
 }

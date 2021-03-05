@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASC.Entities
 {
@@ -18,5 +14,8 @@ namespace ASC.Entities
         public string Feedback { get; set; }
         public int VehicleId { get; set; }
         public int DealerId { get; set; }
+
+        public virtual Dealer Dealer { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
     }
 }

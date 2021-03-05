@@ -269,6 +269,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceBookings_Vehicles">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="ServiceBookings" Type="Self.ServiceBookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceBookings">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehicles_Customers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
@@ -345,6 +357,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ServiceBookings_Dealers" Association="Self.FK_ServiceBookings_Dealers">
             <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="ServiceBookings" EntitySet="ServiceBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceBookings_Vehicles" Association="Self.FK_ServiceBookings_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
             <End Role="ServiceBookings" EntitySet="ServiceBookings" />
           </AssociationSet>
           <AssociationSet Name="FK_Vehicles_Customers" Association="Self.FK_Vehicles_Customers">
@@ -486,6 +502,7 @@
           <Property Name="DealerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dealer" Relationship="Self.FK_ServiceBookings_Dealers" FromRole="ServiceBookings" ToRole="Dealers" />
           <NavigationProperty Name="SelectedServices" Relationship="Self.FK_SelectedServices_ServiceBookings" FromRole="ServiceBookings" ToRole="SelectedServices" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_ServiceBookings_Vehicles" FromRole="ServiceBookings" ToRole="Vehicles" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -514,6 +531,7 @@
           <Property Name="ModelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Vehicles_Customers" FromRole="Vehicles" ToRole="Customers" />
           <NavigationProperty Name="Model" Relationship="Self.FK_Vehicles_Models" FromRole="Vehicles" ToRole="Models" />
+          <NavigationProperty Name="ServiceBookings" Relationship="Self.FK_ServiceBookings_Vehicles" FromRole="Vehicles" ToRole="ServiceBookings" />
         </EntityType>
         <Association Name="FK_DealerBrands_Brands">
           <End Role="Brands" Type="Self.Brand" Multiplicity="1" />
@@ -635,6 +653,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceBookings_Vehicles">
+          <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="ServiceBookings" Type="Self.ServiceBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceBookings">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -691,6 +721,10 @@
           <AssociationSet Name="FK_SelectedServices_Services" Association="Self.FK_SelectedServices_Services">
             <End Role="Services" EntitySet="Services" />
             <End Role="SelectedServices" EntitySet="SelectedServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceBookings_Vehicles" Association="Self.FK_ServiceBookings_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="ServiceBookings" EntitySet="ServiceBookings" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />

@@ -1,15 +1,13 @@
 ﻿using ASC.Common;
 using ASC.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ACS.DAL.Repository.Interfaces
 {
     public interface IServiceBookingRepository
     {
         string AddBooking(ServiceBookingModel serviceBookingModel);
+        IEnumerable<ServiceBooking> GetBookings();
+        ServiceBookingDetailModel GetDetail(int id);
     }
 }

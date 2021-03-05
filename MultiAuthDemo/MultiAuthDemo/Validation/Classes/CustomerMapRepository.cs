@@ -34,7 +34,7 @@ namespace MultiAuthDemo.Validation.Classes
                 _dbContext.SaveChanges();
                 return true;
             }
-            return false;
+            /*return false;*/
         }
     }
 }

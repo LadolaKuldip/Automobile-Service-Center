@@ -4,6 +4,25 @@
     ViewBag.Title = "Index";
 }
 <link href="~/Template/css/Popup-form.css" rel="stylesheet" />
+<style>
+    .plate {
+        display: block;
+        height: 40px;
+        background-color: #FCE205;
+        box-shadow: 5px 5px 2px #888888;
+        border: 3px solid;
+        border-radius: 5px;
+    }
+
+    .number {
+        text-align: center;
+        padding: 3px 0px;
+        color: #000000;
+        font-family: Trebuchet MS;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
 
 <div class="container-fluid">
     <h1 class="mt-4">Vehicles</h1>
@@ -25,11 +44,12 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.NumberPlate)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+
                             <th>
                                 @Html.DisplayNameFor(model => model.ChassisNumber)
                             </th>
@@ -57,41 +77,48 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NumberPlate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ChassisNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RegistrationDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastServiceDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FuelType)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Model.Name)
-                            </td>
-                            <td>
-                                <button type="Submit" value="@item.Id" class="Editform btn btn-primary">
-                                    <i class="far fa-edit"></i>
-                                </button>
+                            <tr>
+                                <td style="min-width:160px;">
+                                    <div class="plate">
+                                        <div class="number">
+                                            <i class="fas fa-globe-asia" style="color:blue;"></i>
+                                            @Html.DisplayFor(modelItem => item.NumberPlate)
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ChassisNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RegistrationDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastServiceDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FuelType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Model.Name)
+                                </td>
+                                <td>
+                                    <button type="Submit" value="@item.Id" class="Editform btn btn-primary">
+                                        <i class="far fa-edit"></i>
+                                    </button>
                                     <a href='@Url.Action("Delete","Vehicle", new { id = item.Id })' class="btn btn-danger">
                                         <i class="fas fa-toggle-off"></i>
                                     </a>
-                                
-                            </td>
-                        </tr>
+
+                                </td>
+                            </tr>
                         }
                     </tbody>
 

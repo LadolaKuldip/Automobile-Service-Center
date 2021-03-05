@@ -264,6 +264,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ServiceBookings_Vehicles">
+    <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+    <End Role="ServiceBookings" Type="Self.ServiceBookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ServiceBookings">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vehicles_Customers">
     <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
     <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
@@ -340,6 +352,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_ServiceBookings_Dealers" Association="Self.FK_ServiceBookings_Dealers">
       <End Role="Dealers" EntitySet="Dealers" />
+      <End Role="ServiceBookings" EntitySet="ServiceBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceBookings_Vehicles" Association="Self.FK_ServiceBookings_Vehicles">
+      <End Role="Vehicles" EntitySet="Vehicles" />
       <End Role="ServiceBookings" EntitySet="ServiceBookings" />
     </AssociationSet>
     <AssociationSet Name="FK_Vehicles_Customers" Association="Self.FK_Vehicles_Customers">

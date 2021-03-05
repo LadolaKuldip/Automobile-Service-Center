@@ -34,5 +34,6 @@ namespace ACS.DAL.Database
         public virtual Dealer Dealer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SelectedService> SelectedServices { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
     }
 }
