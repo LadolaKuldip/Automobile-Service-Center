@@ -5,7 +5,7 @@ namespace ACS.DAL.Repository.Interfaces
 {
     public interface IDealerRepository
     {
-        List<Dealer> GetDealers();
+        List<Dealer> GetDealers(); 
         Dealer GetDealer(int id);
         string CreateDealer(Dealer dealer);
         string EditDealer(Dealer dealer);

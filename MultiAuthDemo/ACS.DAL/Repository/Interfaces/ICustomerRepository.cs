@@ -9,6 +9,7 @@ namespace ACS.DAL.Repository.Interfaces
         Customer GetUserId(string userId);
         CustomerVehicles GetCustomer(string input);
         IEnumerable<Customer> GetCustomers();
+        IEnumerable<Customer> GetDealerCustomers(string userId);
         Customer GetCustomer(int id);
         string CreateCustomer(Customer customer);
         string EditCustomer(Customer customer);

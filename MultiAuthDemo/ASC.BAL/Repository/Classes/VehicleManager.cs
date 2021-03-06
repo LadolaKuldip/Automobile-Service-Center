@@ -28,6 +28,11 @@ namespace ASC.BAL.Repository.Classes
             return _vehicleRepository.EditVehicle(vehicle);
         }
 
+        public IEnumerable<Vehicle> GetDealerVehicles(string userId)
+        {
+            return _vehicleRepository.GetDealerVehicles(userId);
+        }
+
         public Vehicle GetVehicle(int id)
         {
             return _vehicleRepository.GetVehicle(id);

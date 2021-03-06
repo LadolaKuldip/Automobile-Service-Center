@@ -26,5 +26,6 @@ namespace MultiAuthDemo.Validation.Data
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Dealer> Dealers { get; set; }
     }
 }

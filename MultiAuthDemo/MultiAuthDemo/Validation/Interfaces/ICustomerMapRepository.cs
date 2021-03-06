@@ -10,5 +10,6 @@ namespace MultiAuthDemo.Validation.Interfaces
     public interface ICustomerMapRepository
     {
         Boolean MapCustomer(RegisterViewModel model, string Id);
+        Boolean MapDealer(RegisterViewModel model, string Id);
     }
 }

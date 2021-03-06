@@ -154,6 +154,22 @@ namespace ACS.DAL.Repository.Classes
             return customers;
         }
 
+        public IEnumerable<Customer> GetDealerCustomers(string userId)
+        {
+            List<Database.Customer> list = _DbContext.Customers.Where(x => x.Dealer.UserId == userId).ToList();
+            List<Customer> customers = new List<Customer>();
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    Customer customer = new Customer();
+                    customer = AutoMapperConfig.CustomerMapper.Map<Customer>(item);
+                    customers.Add(customer);
+                }
+            }
+            return customers;
+        }
+
         public Customer GetUserId(string userId)
         {
             Database.Customer entity = _DbContext.Customers.Include("Dealer").Where(x => x.UserId == userId).FirstOrDefault();

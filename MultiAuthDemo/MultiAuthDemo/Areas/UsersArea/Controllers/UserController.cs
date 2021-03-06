@@ -1,4 +1,5 @@
-﻿using ASC.Entities;
+﻿using ASC.Common;
+using ASC.Entities;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -47,7 +48,7 @@ namespace MultiAuthDemo.Areas.UsersArea.Controllers
                     }
                 }
             }
-            
+
             return View(customer);
         }
 
@@ -80,6 +81,73 @@ namespace MultiAuthDemo.Areas.UsersArea.Controllers
             }
 
             return View(vehicles);
+        }
+
+        public ActionResult Appointment()
+        {
+            IEnumerable<ServiceBooking> serviceBookings;
+            string userId = User.Identity.GetUserId();
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("https://localhost:44318/ServiceBooking/");
+                //HTTP GET
+                var responseTask = client.GetAsync("GetUserBookings/" + userId);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IEnumerable<ServiceBooking>>();
+                    readTask.Wait();
+                    serviceBookings = readTask.Result;
+                }
+                else
+                {
+                    serviceBookings = Enumerable.Empty<ServiceBooking>();
+                    ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
+                }
+            }
+
+            return View(serviceBookings);
+        }
+
+
+        // GET: AdminsArea/Appointment/Details/5
+        public ActionResult AppointmentDetails(int id)
+        {
+            ServiceBookingDetailModel model;
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("https://localhost:44318/ServiceBooking/");
+                //HTTP GET
+                var responseTask = client.GetAsync("GetDetail/" + id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<ServiceBookingDetailModel>();
+                    readTask.Wait();
+                    model = readTask.Result;
+                }
+                else
+                {
+                    model = new ServiceBookingDetailModel();
+                    ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
+                }
+            }
+            return PartialView(model);
+        }
+        public ActionResult EditAppointment(int id)
+        {
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteAppointment(int id)
+        {
+            return RedirectToAction("Index");
         }
     }
 }

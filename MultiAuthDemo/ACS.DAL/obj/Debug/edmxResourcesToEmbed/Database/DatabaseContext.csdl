@@ -117,7 +117,7 @@
     <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="ReturnDate" Type="DateTime" Precision="0" />
     <Property Name="TotalAmmount" Type="Double" Nullable="false" />
-    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PickupAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DropAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="Feedback" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />

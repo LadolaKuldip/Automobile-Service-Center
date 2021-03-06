@@ -38,6 +38,18 @@ namespace ASC.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetDealerVehicles/{userId}")]
+        public IHttpActionResult GetDealerVehicles(string userId)
+        {
+            var response = _vehicleManager.GetDealerVehicles(userId);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
         [Route("Get/{id}")]
         public IHttpActionResult Get(int id)
         {

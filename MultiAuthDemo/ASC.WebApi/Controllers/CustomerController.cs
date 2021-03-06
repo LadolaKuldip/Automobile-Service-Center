@@ -25,6 +25,17 @@ namespace ASC.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("GetDealerCustomers/{userId}")]
+        public IHttpActionResult GetDealerCustomers(string userId)
+        {
+            var response = _customerManager.GetDealerCustomers(userId);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
 
         [HttpGet]   
         [Route("Get")]

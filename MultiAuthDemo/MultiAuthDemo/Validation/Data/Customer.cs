@@ -22,5 +22,7 @@ namespace MultiAuthDemo.Validation.Data
         public string Address { get; set; }
         public Nullable<int> DealerId { get; set; }
         public bool IsActive { get; set; }
+    
+        public virtual Dealer Dealer { get; set; }
     }
 }

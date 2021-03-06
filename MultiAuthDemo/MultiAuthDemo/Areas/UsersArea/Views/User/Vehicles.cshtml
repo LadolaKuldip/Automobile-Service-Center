@@ -3,6 +3,26 @@
 @{
     ViewBag.Title = "Vehicles";
 }
+    <style>
+        .plate {
+            display: block;
+            height: 40px;
+            background-color: #FCE205;
+            box-shadow: 5px 5px 2px #888888;
+            border: 3px solid;
+            border-radius: 5px;
+        }
+
+        .number {
+            text-align: center;
+            padding: 3px 0px;
+            color: #000000;
+            font-family: Trebuchet MS;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+
     <div class="container-fluid">
         <h1 class="mt-4">User Info</h1>
 
@@ -11,7 +31,12 @@
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">
-                    @Html.DisplayFor(modelItem => item.NumberPlate)
+                    <div class="plate">
+                        <div class="number">
+                            <i class="fas fa-globe-asia" style="color:blue;"></i>
+                            @Html.DisplayFor(modelItem => item.NumberPlate)
+                        </div>
+                    </div>
                 </li>
             </ol>
 

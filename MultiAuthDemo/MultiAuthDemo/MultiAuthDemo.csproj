@@ -205,6 +205,10 @@
     <Compile Include="Areas\AdminsArea\Controllers\ServiceController.cs" />
     <Compile Include="Areas\AdminsArea\Controllers\TempController.cs" />
     <Compile Include="Areas\AdminsArea\Controllers\VehicleController.cs" />
+    <Compile Include="Areas\DealersArea\Controllers\AppointmentsController.cs" />
+    <Compile Include="Areas\DealersArea\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\DealersArea\Controllers\VehiclesController.cs" />
+    <Compile Include="Areas\DealersArea\DealersAreaAreaRegistration.cs" />
     <Compile Include="Areas\UsersArea\Controllers\UserController.cs" />
     <Compile Include="Areas\UsersArea\UsersAreaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -222,6 +226,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Validation\Classes\CustomerMapRepository.cs" />
     <Compile Include="Validation\Data\Customer.cs">
+      <DependentUpon>UserContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\Data\Dealer.cs">
       <DependentUpon>UserContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Validation\Data\UserContext.Context.cs">
@@ -289,6 +296,21 @@
     <Content Include="Areas\AdminsArea\Views\Appointment\Create.cshtml" />
     <Content Include="Areas\AdminsArea\Views\Appointment\Index.cshtml" />
     <Content Include="Areas\AdminsArea\Views\Appointment\Details.cshtml" />
+    <Content Include="Areas\DealersArea\Views\web.config" />
+    <Content Include="Areas\DealersArea\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Shared\_DealerLayoutPage.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Appointments\Index.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Appointments\Create.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Appointments\Details.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Customers\Create.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Customers\Edit.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Vehicles\Edit.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Vehicles\Create.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Vehicles\Index.cshtml" />
+    <Content Include="Areas\UsersArea\Views\User\Appointment.cshtml" />
+    <Content Include="Areas\UsersArea\Views\User\AppointmentDetails.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -368,6 +390,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminsArea\Data\" />
+    <Folder Include="Areas\DealersArea\Models\" />
     <Folder Include="Areas\UsersArea\Data\" />
   </ItemGroup>
   <ItemGroup>

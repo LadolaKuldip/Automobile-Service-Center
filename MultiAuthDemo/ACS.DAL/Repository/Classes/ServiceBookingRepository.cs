@@ -75,6 +75,23 @@ namespace ACS.DAL.Repository.Classes
             return serviceBookings;
         }
 
+        public IEnumerable<ServiceBooking> GetDealerBookings(string userId)
+        {
+            List<ServiceBooking> serviceBookings = new List<ServiceBooking>();
+            IEnumerable<Database.ServiceBooking> entities = _DbContext.ServiceBookings.Include("Dealer").Include("Vehicle").Where(x => x.Dealer.UserId == userId).ToList();
+
+            if (entities != null)
+            {
+                foreach (var item in entities)
+                {
+                    ServiceBooking serviceBooking = new ServiceBooking();
+                    serviceBooking = AutoMapperConfig.ServiceBookingMapper.Map<ServiceBooking>(item);
+                    serviceBookings.Add(serviceBooking);
+                }
+            }
+            return serviceBookings;
+        }
+
         public ServiceBookingDetailModel GetDetail(int id)
         {
             ServiceBooking serviceBooking;
@@ -102,6 +119,23 @@ namespace ACS.DAL.Repository.Classes
                 Services = services
             };
             return model;
+        }
+
+        public IEnumerable<ServiceBooking> GetUserBookings(string userId)
+        {
+            List<ServiceBooking> serviceBookings = new List<ServiceBooking>();
+            IEnumerable<Database.ServiceBooking> entities = _DbContext.ServiceBookings.Include("Dealer").Include("Vehicle").Where(x => x.Vehicle.Customer.UserId == userId).ToList();
+
+            if (entities != null)
+            {
+                foreach (var item in entities)
+                {
+                    ServiceBooking serviceBooking = new ServiceBooking();
+                    serviceBooking = AutoMapperConfig.ServiceBookingMapper.Map<ServiceBooking>(item);
+                    serviceBookings.Add(serviceBooking);
+                }
+            }
+            return serviceBookings;
         }
     }
 }

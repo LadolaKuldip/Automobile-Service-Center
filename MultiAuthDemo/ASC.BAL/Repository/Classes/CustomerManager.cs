@@ -43,6 +43,11 @@ namespace ASC.BAL.Repository.Classes
             return _customerRepository.GetCustomers();
         }
 
+        public IEnumerable<Customer> GetDealerCustomers(string userId)
+        {
+            return _customerRepository.GetDealerCustomers(userId);
+        }
+
         public Customer GetUserId(string userId)
         {
             return _customerRepository.GetUserId(userId);

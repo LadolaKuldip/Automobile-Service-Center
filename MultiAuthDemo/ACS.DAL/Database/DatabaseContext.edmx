@@ -113,7 +113,7 @@
           <Property Name="BookingDate" Type="date" Nullable="false" />
           <Property Name="ReturnDate" Type="date" />
           <Property Name="TotalAmmount" Type="float" Nullable="false" />
-          <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PickupAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="DropAddress" Type="nvarchar" MaxLength="250" />
           <Property Name="Feedback" Type="nvarchar" MaxLength="250" />
@@ -494,7 +494,7 @@
           <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ReturnDate" Type="DateTime" Precision="0" />
           <Property Name="TotalAmmount" Type="Double" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PickupAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DropAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Feedback" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />

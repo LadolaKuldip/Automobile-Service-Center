@@ -80,6 +80,23 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        public IEnumerable<Vehicle> GetDealerVehicles(string userId)
+        {
+            List<Vehicle> vehicles = new List<Vehicle>();
+            IEnumerable<Database.Vehicle> entities = _DbContext.Vehicles.Include("Model").Where(x => x.Customer.Dealer.UserId == userId).ToList();
+
+            if (entities != null)
+            {
+                foreach (var item in entities)
+                {
+                    Vehicle vehicle = new Vehicle();
+                    vehicle = AutoMapperConfig.VehicleMapper.Map<Vehicle>(item);
+                    vehicles.Add(vehicle);
+                }
+            }
+            return vehicles;
+        }
+
         public Vehicle GetVehicle(int id)
         {
             Vehicle vehicle;

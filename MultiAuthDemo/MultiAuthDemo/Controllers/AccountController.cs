@@ -84,9 +84,13 @@ namespace MultiAuthDemo.Controllers
                     var user = await UserManager.FindAsync(model.UserName, model.Password);
                     var roles = await UserManager.GetRolesAsync(user.Id);
 
-                    if (roles.Contains("Employee"))
+                    if (roles.Contains("Customer"))
                     {
-                        return RedirectToAction("About", "Home");
+                        return RedirectToAction("Index", "User", new { area = "UsersArea" });
+                    }
+                    else if (roles.Contains("Dealer"))
+                    {
+                        return RedirectToAction("Index", "Customers", new { area = "DealersArea" });
                     }
                     else if (roles.Contains("Admin"))
                     {
@@ -182,10 +186,34 @@ namespace MultiAuthDemo.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    bool response;
+                    if (model.UserRoles.Equals("Customer"))
+                    {
+                        response = _customerMapRepository.MapCustomer(model, user.Id);
+                    }
+                    else if (model.UserRoles.Equals("Dealer"))
+                    {
+                        response = _customerMapRepository.MapDealer(model, user.Id);
+                    }
 
-                    var response = _customerMapRepository.MapCustomer(model, user.Id);
+                    var roles = await UserManager.GetRolesAsync(user.Id);
 
-                    return RedirectToAction("Index", "Home");
+                    if (roles.Contains("Customer"))
+                    {
+                        return RedirectToAction("Index", "User", new { area = "UsersArea" });
+                    }
+                    else if (roles.Contains("Dealer"))
+                    {
+                        return RedirectToAction("Index", "Customers", new { area = "DealersArea" });
+                    }
+                    else if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Temp", new { area = "AdminsArea" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                   .ToList(), "Name", "Name");

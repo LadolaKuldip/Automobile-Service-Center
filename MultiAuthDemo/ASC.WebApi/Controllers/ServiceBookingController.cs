@@ -37,6 +37,30 @@ namespace ASC.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("GetDealerBookings/{userId}")]
+        public IHttpActionResult GetDealerBookings(string userId)
+        {
+            var response = _serviceBookingManager.GetDealerBookings(userId);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("GetUserBookings/{userId}")]
+        public IHttpActionResult GetUserBookings(string userId)
+        {
+            var response = _serviceBookingManager.GetUserBookings(userId);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("Create")]
         public IHttpActionResult Create(ServiceBookingModel serviceBookingModel)

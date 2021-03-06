@@ -24,9 +24,19 @@ namespace ASC.BAL.Repository.Classes
             return _serviceBookingRepository.GetBookings();
         }
 
+        public IEnumerable<ServiceBooking> GetDealerBookings(string userId)
+        {
+            return _serviceBookingRepository.GetDealerBookings(userId);
+        }
+
         public ServiceBookingDetailModel GetDetail(int id)
         {
             return _serviceBookingRepository.GetDetail(id);
+        }
+
+        public IEnumerable<ServiceBooking> GetUserBookings(string userId)
+        {
+            return _serviceBookingRepository.GetUserBookings(userId);
         }
     }
 }

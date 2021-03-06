@@ -8,6 +8,8 @@ namespace ACS.DAL.Repository.Interfaces
     {
         string AddBooking(ServiceBookingModel serviceBookingModel);
         IEnumerable<ServiceBooking> GetBookings();
+        IEnumerable<ServiceBooking> GetDealerBookings(string userId);
+        IEnumerable<ServiceBooking> GetUserBookings(string userId);
         ServiceBookingDetailModel GetDetail(int id);
     }
 }

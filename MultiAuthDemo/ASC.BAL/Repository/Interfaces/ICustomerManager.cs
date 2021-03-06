@@ -8,6 +8,7 @@ namespace ASC.BAL.Repository.Interfaces
     {
         Customer GetUserId(string userId);
         CustomerVehicles GetCustomer(string input);
+        IEnumerable<Customer> GetDealerCustomers(string userId);
         IEnumerable<Customer> GetCustomers();
         Customer GetCustomer(int id);
         string CreateCustomer(Customer customer);

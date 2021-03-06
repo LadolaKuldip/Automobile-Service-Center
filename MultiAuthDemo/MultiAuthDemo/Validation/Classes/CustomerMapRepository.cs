@@ -36,5 +36,24 @@ namespace MultiAuthDemo.Validation.Classes
             }
             /*return false;*/
         }
+
+        public bool MapDealer(RegisterViewModel model, string Id)
+        {
+            var dealer = _dbContext.Dealers.Where(x => x.Email == model.Email).SingleOrDefault();
+            if (dealer != null)
+            {
+                if (dealer.UserId == null)
+                {
+                    dealer.UserId = Id;
+                }
+                _dbContext.Entry(dealer).State = EntityState.Modified;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
