@@ -19,6 +19,7 @@ namespace ACS.DAL.Database
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public int DealerId { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual Dealer Dealer { get; set; }
     }

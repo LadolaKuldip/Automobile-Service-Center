@@ -15,7 +15,6 @@ namespace ACS.DAL.Repository.Classes
             _DbContext = new Database.SampleDBEntities();
         }
 
-        
         public IEnumerable<Brand> GetBrands()
         {
             List<Brand> brands = new List<Brand>();

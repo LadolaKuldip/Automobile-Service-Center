@@ -41,6 +41,13 @@ namespace ACS.DAL
             cfg.CreateMap<Database.Dealer, Dealer>();
         }));
 
+        public static Mapper MechanicMapper = new Mapper(new MapperConfiguration(cfg => {
+            cfg.CreateMap<Mechanic, Database.Mechanic>();
+            cfg.CreateMap<Dealer, Database.Dealer>();
+            cfg.CreateMap<Database.Mechanic, Mechanic>();
+            cfg.CreateMap<Database.Dealer, Dealer>();
+        }));
+
         public static Mapper DealerMapper = new Mapper(new MapperConfiguration(cfg => {
             cfg.CreateMap<Dealer, Database.Dealer>();
             cfg.CreateMap<Database.Dealer, Dealer>();

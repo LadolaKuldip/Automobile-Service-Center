@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MultiAuthDemo.Areas.AdminsArea.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DealerController : Controller
     {
         // GET: AdminsArea/Dealer

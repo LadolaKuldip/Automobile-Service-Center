@@ -73,17 +73,17 @@
                                     <i class="far fa-edit"></i>
                                 </button>
                                 @if (item.IsActive == true)
-                                {
-                                    <a href='@Url.Action("Delete","Customer", new { id = item.Id })' class="btn btn-danger">
-                                        <i class="fas fa-toggle-off"></i>
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a href='@Url.Action("Delete","Customer", new { id = item.Id })' class="btn btn-success">
-                                        <i class="fas fa-toggle-on"></i>
-                                    </a>
-                                }
+                                    {
+                                        <a href='@Url.Action("Delete","Customer", new { id = item.Id })' class="btn btn-success">
+                                            <i class="fas fa-toggle-on"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Delete","Customer", new { id = item.Id })' class="btn btn-danger">
+                                            <i class="fas fa-toggle-off"></i>
+                                        </a>
+                                    }
                             </td>
                         </tr>
                         }

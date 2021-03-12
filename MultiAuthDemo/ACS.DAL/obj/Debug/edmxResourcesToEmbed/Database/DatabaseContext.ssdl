@@ -82,6 +82,7 @@
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="13" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="DealerId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Models">
     <Key>

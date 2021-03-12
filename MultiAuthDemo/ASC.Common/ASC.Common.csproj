@@ -44,6 +44,8 @@
     <Compile Include="AppointmentViewModel.cs" />
     <Compile Include="CustomerFormModel.cs" />
     <Compile Include="CustomerVehicles.cs" />
+    <Compile Include="IndexCounts.cs" />
+    <Compile Include="MechanicFormModel.cs" />
     <Compile Include="ModelFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBookingDetailModel.cs" />

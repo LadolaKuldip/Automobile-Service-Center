@@ -60,7 +60,7 @@ namespace MultiAuthDemo.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return PartialView();
         }
 
         //
@@ -72,7 +72,7 @@ namespace MultiAuthDemo.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return PartialView(model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -90,11 +90,11 @@ namespace MultiAuthDemo.Controllers
                     }
                     else if (roles.Contains("Dealer"))
                     {
-                        return RedirectToAction("Index", "Customers", new { area = "DealersArea" });
+                        return RedirectToAction("Index", "DIndex", new { area = "DealersArea" });
                     }
                     else if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index", "Temp", new { area = "AdminsArea" });
+                        return RedirectToAction("Index", "AIndex", new { area = "AdminsArea" });
                     }
                     else
                     {
@@ -108,7 +108,7 @@ namespace MultiAuthDemo.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return PartialView(model);
             }
         }
 
@@ -162,7 +162,7 @@ namespace MultiAuthDemo.Controllers
         {
             ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                     .ToList(), "Name", "Name");
-            return View();
+            return PartialView();
         }
 
         //
@@ -204,11 +204,11 @@ namespace MultiAuthDemo.Controllers
                     }
                     else if (roles.Contains("Dealer"))
                     {
-                        return RedirectToAction("Index", "Customers", new { area = "DealersArea" });
+                        return RedirectToAction("Index", "DIndex", new { area = "DealersArea" });
                     }
                     else if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index", "Temp", new { area = "AdminsArea" });
+                        return RedirectToAction("Index", "AIndex", new { area = "AdminsArea" });
                     }
                     else
                     {
@@ -219,9 +219,10 @@ namespace MultiAuthDemo.Controllers
                                   .ToList(), "Name", "Name");
                 AddErrors(result);
             }
-
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                  .ToList(), "Name", "Name");
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return PartialView(model);
         }
 
         //
@@ -444,7 +445,7 @@ namespace MultiAuthDemo.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

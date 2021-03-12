@@ -10,3 +10,5 @@ D:\Projects\MultiAuthDemo\ASC.Entities\obj\Debug\ASC.Entities.csprojAssemblyRefe
 D:\Projects\MultiAuthDemo\ASC.Entities\obj\Debug\ASC.Entities.csproj.CoreCompileInputs.cache
 D:\Projects\MultiAuthDemo\ASC.Entities\obj\Debug\ASC.Entities.dll
 D:\Projects\MultiAuthDemo\ASC.Entities\obj\Debug\ASC.Entities.pdb
+D:\Projects\MultiAuthDemo\ASC.Entities\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Projects\MultiAuthDemo\ASC.Entities\obj\Debug\ASC.Entities.csproj.CopyComplete

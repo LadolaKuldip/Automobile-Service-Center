@@ -4,25 +4,8 @@
     ViewBag.Title = "Index";
 }
 <link href="~/Template/css/Popup-form.css" rel="stylesheet" />
-<style>
-    .plate {
-        display: block;
-        height: 40px;
-        background-color: #FCE205;
-        box-shadow: 5px 5px 2px #888888;
-        border: 3px solid;
-        border-radius: 5px;
-    }
+<link href="~/Template/css/NumberPlate.css" rel="stylesheet" />
 
-    .number {
-        text-align: center;
-        padding: 3px 0px;
-        color: #000000;
-        font-family: Trebuchet MS;
-        font-size: 20px;
-        font-weight: bold;
-    }
-</style>
 
 <div class="container-fluid">
     <h1 class="mt-4">Appointments</h1>
@@ -121,9 +104,9 @@
                                     <a href='@Url.Action("Edit","Appointment", new { id = item.Id })' class="btn btn-warning">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href='@Url.Action("Delete","Appointment", new { id = item.Id })' class="btn btn-danger">
+                                    @*<a href='@Url.Action("Delete","Appointment", new { id = item.Id })' class="btn btn-danger">
                                         <i class="fas fa-toggle-off"></i>
-                                    </a>
+                                    </a>*@
 
                                 </td>
                             </tr>

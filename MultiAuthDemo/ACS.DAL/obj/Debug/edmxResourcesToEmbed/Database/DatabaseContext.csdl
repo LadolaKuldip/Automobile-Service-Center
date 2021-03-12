@@ -86,6 +86,7 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DealerId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Dealer" Relationship="Self.FK_Mechanics_Dealers" FromRole="Mechanics" ToRole="Dealers" />
   </EntityType>
   <EntityType Name="Model">

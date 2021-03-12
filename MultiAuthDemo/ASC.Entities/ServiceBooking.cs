@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASC.Entities
 {
@@ -12,7 +13,11 @@ namespace ASC.Entities
         public string PickupAddress { get; set; }
         public string DropAddress { get; set; }
         public string Feedback { get; set; }
+
+        [Display(Name = "Vehicle")]
         public int VehicleId { get; set; }
+
+        [Display(Name = "Dealer")]
         public int DealerId { get; set; }
 
         public virtual Dealer Dealer { get; set; }

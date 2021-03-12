@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace MultiAuthDemo.Areas.AdminsArea.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BrandController : Controller
     {
-        /*[Authorize(Roles ="Admin")]*/
+         
         // GET: AdminsArea/Brand
         public ActionResult Index()
         {

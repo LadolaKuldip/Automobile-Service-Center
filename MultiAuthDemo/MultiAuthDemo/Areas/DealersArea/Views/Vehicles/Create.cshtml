@@ -65,7 +65,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.vehicle.CustomerId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(model => model.vehicle.CustomerId, new SelectList(Model.customers, "Id", "Name"), "Select", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.vehicle.CustomerId, new SelectList(Model.customers, "Id", "Name"), "Select", new {id = "myDropDownlistID", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.vehicle.CustomerId, "", new { @class = "text-danger" })
                     </div>
 
@@ -73,7 +73,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.vehicle.ModelId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(model => model.vehicle.ModelId, new SelectList(Model.models, "Id", "Name"), "Select", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.vehicle.ModelId, new SelectList(Model.models, "Id", "Name"), "Select", new {id = "myDropDownlistID2", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.vehicle.ModelId, "", new { @class = "text-danger" })
                     </div>
 
@@ -89,3 +89,9 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $("#myDropDownlistID").select2();
+        $("#myDropDownlistID2").select2();
+    });
+</script>

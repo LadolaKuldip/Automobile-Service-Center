@@ -177,8 +177,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\DealerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MechanicController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\ServiceBookingController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
