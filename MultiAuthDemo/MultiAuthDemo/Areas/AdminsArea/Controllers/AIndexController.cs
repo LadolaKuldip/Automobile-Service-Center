@@ -1,7 +1,5 @@
 ﻿using ASC.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Web.Mvc;
 
@@ -35,8 +33,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     counts = new IndexCounts();
                     ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
                 }
-            }
-
+            }            
             return View(counts);
         }
     }

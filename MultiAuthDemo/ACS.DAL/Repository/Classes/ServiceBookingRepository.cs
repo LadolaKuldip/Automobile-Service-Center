@@ -3,7 +3,9 @@ using ASC.Common;
 using ASC.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 
 namespace ACS.DAL.Repository.Classes
 {
@@ -48,6 +50,29 @@ namespace ACS.DAL.Repository.Classes
 
                     entity.TotalAmmount = totalAmmount;
                     _DbContext.SaveChanges();
+
+
+                    string FilePath = "D:/Projects/BookinMail.html";
+                    StreamReader str = new StreamReader(FilePath);
+                    string MailText = str.ReadToEnd();
+                    str.Close();
+
+                    MailMessage mail = new MailMessage();
+                    mail.To.Add("arjun.chandarana.ac@gmail.com");
+                    mail.From = new MailAddress("automobile.onthego@gmail.com");
+                    mail.Subject = "Appontment Booked";
+                    string Body = MailText;
+                    mail.Body = Body;
+                    mail.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new System.Net.NetworkCredential("automobile.onthego@gmail.com", "Password@123");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+
+
                     return "created";
                 }
                 return "null";
