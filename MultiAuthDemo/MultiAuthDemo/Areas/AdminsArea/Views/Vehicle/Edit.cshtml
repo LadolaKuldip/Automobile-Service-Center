@@ -66,18 +66,25 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.vehicle.CustomerId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(model => model.vehicle.CustomerId, new SelectList(Model.customers, "Id", "Name"), "Select", new {id = "myDropDownlistID", @class = "form-control" })
+                        @Html.DropDownListFor(model => model.vehicle.CustomerId, new SelectList(Model.customers, "Id", "Name"), "Select", new { id = "myDropDownlistID", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.vehicle.CustomerId, "", new { @class = "text-danger" })
                     </div>
 
                 </div>
                 <div class="form-group row">
-                    @Html.LabelFor(model => model.vehicle.ModelId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    @Html.LabelFor(model => model.vehicle.Model.BrandId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(model => model.vehicle.ModelId, new SelectList(Model.models, "Id", "Name"), "Select", new {id = "myDropDownlistID2", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.vehicle.ModelId, "", new { @class = "text-danger" })
+
+                        @Html.DropDownListFor(model => model.vehicle.Model.BrandId, new SelectList(Model.brands, "Id", "Name"), "Select", new { id = "myDropDownlistID3", @class = "form-control col-md-10" })
+                        @Html.ValidationMessageFor(model => model.vehicle.Model.BrandId, "", new { @class = "text-danger" })
+
+                        <button class="btn btn-sm btn-primary" type="button" id="BtnModelDD" style="margin-left: 1rem;"><i class="fas fa-search"></i></button>
+
                     </div>
 
+                </div>
+                <div class="form-group row" id="ModelDD" style="display:none;">
+                    @Html.HiddenFor(model => model.vehicle.ModelId)
                 </div>
             </div>
 
@@ -93,6 +100,17 @@
 <script>
     $(document).ready(function () {
         $("#myDropDownlistID").select2();
-        $("#myDropDownlistID2").select2();
+        $("#myDropDownlistID3").select2();
     });
+</script>
+<script>
+        $(document).ready(function () {
+            $("#BtnModelDD").click(function (evt) {
+                var CatID = $('#myDropDownlistID3').val();
+                  $.get('@Url.Action("CreateDropdown", "Vehicle")?id=' + CatID, function(data) {
+                    $('#ModelDD').html(data);
+                    $('#ModelDD').css("display", "block");
+                });
+            });
+        });
 </script>

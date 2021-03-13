@@ -321,6 +321,8 @@
     <Content Include="Areas\DealersArea\Views\Mechanics\Index.cshtml" />
     <Content Include="Areas\DealersArea\Views\Mechanics\Create.cshtml" />
     <Content Include="Areas\DealersArea\Views\Mechanics\Edit.cshtml" />
+    <Content Include="Areas\AdminsArea\Views\Vehicle\CreateDropdown.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Vehicles\CreateDropdown.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

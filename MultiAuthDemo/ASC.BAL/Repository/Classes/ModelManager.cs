@@ -28,6 +28,11 @@ namespace ASC.BAL.Repository.Classes
             return _modelRepository.EditModel(model);
         }
 
+        public IEnumerable<Model> GetbyBrand(int id)
+        {
+            return _modelRepository.GetbyBrand(id);
+        }
+
         public Model GetModel(int id)
         {
             return _modelRepository.GetModel(id);

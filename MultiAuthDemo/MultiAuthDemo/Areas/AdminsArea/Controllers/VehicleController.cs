@@ -40,18 +40,52 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
 
             return View(vehicles);
         }
+        // GET: AdminsArea/Vehicle/CreateDropdown/1
+        public ActionResult CreateDropdown(int id)
+        {
+            IEnumerable<Model> models;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44318/Model/");
+                //HTTP GET
+                var responseTask = client.GetAsync("GetbyBrand/"+id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IEnumerable<Model>>();
+                    readTask.Wait();
+                    models = readTask.Result;
+                }
+                else
+                {
+                    models = Enumerable.Empty<Model>();
+                    ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
+                }
+            }
+            VehicleFormModel entity = new VehicleFormModel
+            {
+                models = models,
+                customers = null,
+                vehicle = new Vehicle()
+            };
+
+            return PartialView(entity);
+        }
 
         // GET: AdminsArea/Vehicle/Create
         public ActionResult Create()
         {
-            IEnumerable<Model> models;
+            IEnumerable<Brand> brands;
             IEnumerable<Customer> customers;
             Vehicle vehicle = new Vehicle();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
-                var responseTask = client.GetAsync("Model/Get");
+                var responseTask = client.GetAsync("Brand/Get");
                 var responseTask2 = client.GetAsync("Customer/Get/");
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -59,9 +93,9 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 var result2 = responseTask2.Result;
                 if (result.IsSuccessStatusCode && result2.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<IEnumerable<Model>>();
+                    var readTask = result.Content.ReadAsAsync<IEnumerable<Brand>>();
                     readTask.Wait();
-                    models = readTask.Result;
+                    brands = readTask.Result;
 
                     var readTask2 = result2.Content.ReadAsAsync <IEnumerable<Customer>>();
                     readTask2.Wait();
@@ -69,7 +103,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 }
                 else
                 {
-                    models = Enumerable.Empty<Model>();
+                    brands = Enumerable.Empty<Brand>();
                     customers = Enumerable.Empty<Customer>();
                     vehicle = null;
                     ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
@@ -77,7 +111,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             }
             VehicleFormModel entity = new VehicleFormModel
             {
-                models = models,
+                brands = brands,
                 customers = customers,
                 vehicle = vehicle
             };
@@ -120,14 +154,14 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
         // GET: AdminsArea/Vehicle/Edit/5
         public ActionResult Edit(int id)
         {
-            IEnumerable<Model> models;
+            IEnumerable<Brand> brands;
             IEnumerable<Customer> customers;
             Vehicle vehicle = new Vehicle();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
-                var responseTask = client.GetAsync("Model/Get");
+                var responseTask = client.GetAsync("Brand/Get");
                 var responseTask2 = client.GetAsync("Customer/Get/");
                 var responseTask3 = client.GetAsync("Vehicle/Get/" + id);
                 responseTask.Wait();
@@ -138,9 +172,9 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 var result3 = responseTask3.Result;
                 if (result.IsSuccessStatusCode && result2.IsSuccessStatusCode && result3.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<IEnumerable<Model>>();
+                    var readTask = result.Content.ReadAsAsync<IEnumerable<Brand>>();
                     readTask.Wait();
-                    models = readTask.Result;
+                    brands = readTask.Result;
 
                     var readTask2 = result2.Content.ReadAsAsync<IEnumerable<Customer>>();
                     readTask2.Wait();
@@ -152,7 +186,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 }
                 else
                 {
-                    models = Enumerable.Empty<Model>();
+                    brands = Enumerable.Empty<Brand>();
                     customers = Enumerable.Empty<Customer>();
                     vehicle = null;
                     ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
@@ -160,7 +194,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             }
             VehicleFormModel entity = new VehicleFormModel
             {
-                models = models,
+                brands = brands,
                 customers = customers,
                 vehicle = vehicle
             };

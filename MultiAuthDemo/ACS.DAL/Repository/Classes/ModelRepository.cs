@@ -81,6 +81,23 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        public IEnumerable<Model> GetbyBrand(int id)
+        {
+            List<Model> models = new List<Model>();
+            IEnumerable<Database.Model> entities = _DbContext.Models.Include("Brand").Where(x => x.BrandId == id).ToList();
+
+            if (entities != null)
+            {
+                foreach (var item in entities)
+                {
+                    Model model = new Model();
+                    model = AutoMapperConfig.ModelMapper.Map<Model>(item);
+                    models.Add(model);
+                }
+            }
+            return models;
+        }
+
         public Model GetModel(int id)
         {
             Model model;
@@ -101,8 +118,6 @@ namespace ACS.DAL.Repository.Classes
         {
             List<Model> models = new List<Model>();
             IEnumerable<Database.Model> entities = _DbContext.Models.Include("Brand").ToList();
-
-
 
             if (entities != null)
             {

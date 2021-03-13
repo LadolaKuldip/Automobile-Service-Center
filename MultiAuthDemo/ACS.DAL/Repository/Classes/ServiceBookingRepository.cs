@@ -75,7 +75,7 @@ namespace ACS.DAL.Repository.Classes
                     str.Close();
 
                     MailMessage mail = new MailMessage();
-                    mail.To.Add("arjun.chandarana.ac@gmail.com");
+                    mail.To.Add("parthnonghanvadra@gmail.com");
                     mail.From = new MailAddress("automobile.onthego@gmail.com");
                     mail.Subject = "Appontment Booked";
                     string Body = MailText;

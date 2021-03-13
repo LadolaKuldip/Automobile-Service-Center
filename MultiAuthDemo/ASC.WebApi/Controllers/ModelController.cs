@@ -26,6 +26,18 @@ namespace ASC.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetbyBrand/{id}")]
+        public IHttpActionResult GetbyBrand(int id)
+        {
+            var response = _modelManager.GetbyBrand(id);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
         [Route("Get/{id}")]
         public IHttpActionResult Get(int id)
         {

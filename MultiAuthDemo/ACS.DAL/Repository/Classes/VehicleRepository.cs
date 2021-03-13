@@ -26,7 +26,15 @@ namespace ACS.DAL.Repository.Classes
                         return "already";
                     }
                     Database.Vehicle entity = new Database.Vehicle();
-                    entity = AutoMapperConfig.VehicleMapper.Map<Database.Vehicle>(vehicle);
+                    /*entity = AutoMapperConfig.VehicleMapper.Map<Database.Vehicle>(vehicle);*/
+                    entity.Name = vehicle.Name;
+                    entity.NumberPlate = vehicle.NumberPlate;
+                    entity.ChassisNumber = vehicle.ChassisNumber;
+                    entity.RegistrationDate = vehicle.RegistrationDate;
+                    entity.LastServiceDate = vehicle.LastServiceDate;
+                    entity.FuelType = vehicle.FuelType;
+                    entity.CustomerId = vehicle.CustomerId;
+                    entity.ModelId = vehicle.ModelId;
 
                     _DbContext.Vehicles.Add(entity);
                     _DbContext.SaveChanges();
