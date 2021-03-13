@@ -31,22 +31,39 @@
         </tr>
         <tr>
           <td style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 30px; padding: 20px 0 30px 0;">
-			
+			  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="color: #153643; font-family: Arial, sans-serif;border-collapse: collapse;">
+					<tr style="border-top:1px solid #dee2e6;">
+						<td style="font-weight:bold;">
+							NumberPlate &nbsp;
+						</td>
+						<td>
+							{NumberPlate}
+						</td>
+					</tr>
+					<tr style="border-top:1px solid #dee2e6;">
+						<td style="font-weight:bold;">
+							&nbsp;
+						</td>
+						<td>
+							
+						</td>
+					</tr>
+			  </table>
 			  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="color: #153643; font-family: Arial, sans-serif;border-collapse: collapse;">
 					<tr style="border-top:1px solid #dee2e6;">
 						<td style="font-weight:bold;">
 							BookingDate
 						</td>
 						<td>
-							BookingDate
+							{BookingDate}
 						</td>
 					</tr>
 					<tr>
 						<td style="font-weight:bold;">
-							ReturnDate
+							BookingTime
 						</th>
 						<td>
-							ReturnDate
+							{BookingTime}
 						</td>
 					</tr>
 					<tr>
@@ -54,7 +71,7 @@
 							PickupAddress
 						</td>
 						<td>
-							model.ServiceBooking.PickupAddress
+							{PickupAddress}
 						</td>
 					</tr>
 					<tr>
@@ -62,7 +79,7 @@
 							DropAddress
 						</td>
 						<td>
-							model.ServiceBooking.DropAddress
+							{DropAddress}
 						</td>
 					</tr>
 					<tr>
@@ -70,7 +87,7 @@
 							Dealer.Name
 						</th>
 						<td>
-							Dealer.Name
+							{Dealer}
 						</td>
 					</tr>
 					<tr style="border-bottom:1px solid #dee2e6;">
@@ -78,7 +95,7 @@
 							PhoneNumber
 						</td>
 						<td>
-							PhoneNumber
+							{PhoneNumber}
 						</td>
 					</tr>
 					<tr style="border-bottom:1px solid #dee2e6;">
@@ -91,21 +108,14 @@
 					</tr>
 			  </table>
 			  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="color: #153643; font-family: Arial, sans-serif;border-collapse: collapse;">
-					<tr style="border-top:1px solid #dee2e6;font-weight:bold;">
-						 <td>Service Name</td>
-						 <td>Ammount</td>
+					<tr style="width:100%">
+						 <td style="width:50%">Service </td>
+						 <td style="width:50%">Ammount</td>
 					</tr>
-                    <tr >
-						 <td>Service 1</td>
-						 <td>1500</td>
-					</tr>
-					<tr >
-						 <td>Service 2</td>
-						 <td>500</td>
-					</tr>
+                    {Service}
 					<tr style="border-top:1px solid #dee2e6;font-weight:bold;">
 						<td></td>
-						 <td>2000</td>
+						 <td>{Total}</td>
 					</tr>
 			  </table>
           </td>
@@ -130,15 +140,15 @@
             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
               <tr>
                 <td>
-                  <a href="#">
-                     <i class="fas fa-globe-asia"></i>
-                  </a>
+                  <p style="font-size:24px;color:black;">
+                     
+                  </p>
                 </td>
                 <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
                 <td>
-                  <a href="#">
-                    <i class="fas fa-info"></i>
-                  </a>
+                  <p style="font-size:24px">
+                    🛈
+                  </p>
                 </td>
               </tr>
             </table>

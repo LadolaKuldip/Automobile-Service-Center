@@ -36,6 +36,7 @@ namespace ACS.DAL.Repository.Classes
                     _DbContext.SaveChanges();
                     int id = entity.Id;
                     double totalAmmount = 0;
+                    string htmlContentService = "";
                     foreach (var I in serviceBookingModel.servicesIds)
                     {
                         Database.Service service = _DbContext.Services.Find(I);
@@ -46,15 +47,31 @@ namespace ACS.DAL.Repository.Classes
                         _DbContext.SaveChanges();
 
                         totalAmmount += service.Amount;
+
+                        htmlContentService += "<tr><td>" + service.Name + "</td><td>" + service.Amount + "</td></tr>";
                     }
 
                     entity.TotalAmmount = totalAmmount;
                     _DbContext.SaveChanges();
 
-
                     string FilePath = "D:/Projects/BookinMail.html";
                     StreamReader str = new StreamReader(FilePath);
                     string MailText = str.ReadToEnd();
+
+                    Database.Dealer dealer = _DbContext.Dealers.Find(entity.DealerId);
+                    Database.Vehicle vehicle = _DbContext.Vehicles.Where(x => x.Id == entity.VehicleId).FirstOrDefault();
+                    Database.Customer customer = _DbContext.Customers.Where(x => x.Id == vehicle.CustomerId).FirstOrDefault();
+                    DateTime time = DateTime.Now;
+
+                    MailText = MailText.Replace("{NumberPlate}", vehicle.NumberPlate);
+                    MailText = MailText.Replace("{BookingDate}", entity.BookingDate.ToString());
+                    MailText = MailText.Replace("{BookingTime}", time.ToString("t"));
+                    MailText = MailText.Replace("{PickupAddress}", entity.PickupAddress);
+                    MailText = MailText.Replace("{DropAddress}", entity.DropAddress);
+                    MailText = MailText.Replace("{Dealer}", dealer.Name);
+                    MailText = MailText.Replace("{PhoneNumber}", dealer.PhoneNumber);
+                    MailText = MailText.Replace("{Service}", htmlContentService);
+                    MailText = MailText.Replace("{Total}", totalAmmount.ToString());
                     str.Close();
 
                     MailMessage mail = new MailMessage();

@@ -33,7 +33,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     counts = new IndexCounts();
                     ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
                 }
-            }            
+            }
             return View(counts);
         }
     }
