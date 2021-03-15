@@ -13,7 +13,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
     [Authorize(Roles = "Dealer")]
     public class AppointmentsController : Controller
     {
-        // GET: AdminsArea/Appointment
+        // GET: DealersAreas/Appointment
         public ActionResult Index()
         {
             IEnumerable<ServiceBooking> serviceBookings;
@@ -44,7 +44,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             return View(serviceBookings);
         }
 
-        // GET: AdminsArea/Appointment/Create
+        // GET: DealersAreas/Appointment/Create
         public ActionResult Create(string searchData)
         {
             ServiceBooking serviceBooking = new ServiceBooking();
@@ -57,6 +57,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Dealer/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Service/Get");
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -113,7 +114,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             return View(appointment);
         }
 
-
+        //POST DealersAreas/Appointment
         [HttpPost]
         public ActionResult Create(ServiceBooking ServiceBooking, int[] servicesIds)
         {
@@ -151,7 +152,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
 
         }
 
-        // GET: AdminsArea/Appointment/Details/5
+        // GET: DealersAreas/Appointment/Details/5
         public ActionResult Details(int id)
         {
             ServiceBookingDetailModel model;

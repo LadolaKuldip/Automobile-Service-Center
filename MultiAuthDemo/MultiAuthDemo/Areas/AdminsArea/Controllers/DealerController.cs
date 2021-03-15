@@ -60,7 +60,6 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Dealer>("Create", dealer);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -108,7 +107,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return PartialView(dealer);
         }
 
-        // POST: AdminsArea/Dealer/Edit/5
+        // POST: AdminsArea/Dealer/Edit
         [HttpPost]
         public ActionResult Edit(Dealer dealer)
         {

@@ -140,6 +140,7 @@
     <Property Name="FuelType" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="CustomerId" Type="int" Nullable="false" />
     <Property Name="ModelId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Customers_Dealers">
     <End Role="Dealers" Type="Self.Dealers" Multiplicity="0..1" />

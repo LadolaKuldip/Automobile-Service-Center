@@ -13,7 +13,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
     [Authorize(Roles = "Dealer")]
     public class CustomersController : Controller
     {
-        // GET: DealersAreas
+        // GET: DealersAreas/Customers
         public ActionResult Index()
         {
             IEnumerable<Customer> customers;
@@ -43,7 +43,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             return View(customers);
         }
 
-        // GET: DealersArea/Customers
+        // GET: DealersArea/Customers/Create
         public ActionResult Create()
         {
             IEnumerable<Dealer> dealers;
@@ -74,7 +74,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             return PartialView(entity);
         }
 
-        // POST: DealersArea/Customers
+        // POST: DealersArea/Customers/Create
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
@@ -87,7 +87,6 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Customer>("Create", customer);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -107,7 +106,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             }
         }
 
-        // GET: DealersArea/Customers
+        // GET: DealersArea/Customers/Edit/1
         public ActionResult Edit(int id)
         {
             IEnumerable<Dealer> dealers;
@@ -117,6 +116,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Dealer/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Customer/Get/" + id);
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -149,7 +149,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
 
         }
 
-        // POST: DealersArea/Customers
+        // POST: DealersArea/Customers/Edit
         [HttpPost]
         public ActionResult Edit(Customer customer)
         {
@@ -181,7 +181,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             }
         }
 
-        // GET: DealersArea/Customers
+        // GET: DealersArea/Customers/Delete/1
         public ActionResult Delete(int id)
         {
             using (var client = new HttpClient())

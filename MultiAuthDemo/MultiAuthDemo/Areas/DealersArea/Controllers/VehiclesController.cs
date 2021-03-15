@@ -81,6 +81,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
         // GET: AdminsArea/Vehicle/Create
         public ActionResult Create()
         {
+            string userId = User.Identity.GetUserId();
             IEnumerable<Brand> brands;
             IEnumerable<Customer> customers;
             Vehicle vehicle = new Vehicle();
@@ -89,7 +90,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Brand/Get");
-                var responseTask2 = client.GetAsync("Customer/Get/");
+                var responseTask2 = client.GetAsync("Customer/GetDealerCustomers/" + userId);
                 responseTask.Wait();
                 responseTask2.Wait();
                 var result = responseTask.Result;

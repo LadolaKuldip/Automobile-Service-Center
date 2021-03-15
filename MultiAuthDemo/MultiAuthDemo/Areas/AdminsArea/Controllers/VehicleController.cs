@@ -86,6 +86,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Brand/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Customer/Get/");
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -119,7 +120,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return PartialView(entity);
         }
 
-        // POST: AdminsArea/Brand/Create
+        // POST: AdminsArea/Vehicle/Create
         [HttpPost]
         public ActionResult Create(Vehicle vehicle)
         {
@@ -137,7 +138,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     if (result.IsSuccessStatusCode)
                     {
                         TempData["Type"] = 0;
-                        TempData["Message"] = "Model Added successfully";
+                        TempData["Message"] = "Vehicle Added successfully";
                         return RedirectToAction("Index");
                     }
                 }
@@ -162,7 +163,9 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Brand/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Customer/Get/");
+                //HTTP GET
                 var responseTask3 = client.GetAsync("Vehicle/Get/" + id);
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -220,7 +223,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     if (result.IsSuccessStatusCode)
                     {
                         TempData["Type"] = 1;
-                        TempData["Message"] = "Model Edited successfully";
+                        TempData["Message"] = "Vehicle Edited successfully";
                         return RedirectToAction("Index");
                     }
                 }
@@ -249,7 +252,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 if (result.IsSuccessStatusCode)
                 {
                     TempData["Type"] = 1;
-                    TempData["Message"] = "Model Status Changed successfully";
+                    TempData["Message"] = "Vehicle Status Changed successfully";
                     return RedirectToAction("Index");
                 }
             }

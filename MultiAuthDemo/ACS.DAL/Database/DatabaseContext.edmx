@@ -145,6 +145,7 @@
           <Property Name="FuelType" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="ModelId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Customers_Dealers">
           <End Role="Dealers" Type="Self.Dealers" Multiplicity="0..1" />
@@ -531,6 +532,7 @@
           <Property Name="FuelType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="ModelId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Vehicles_Customers" FromRole="Vehicles" ToRole="Customers" />
           <NavigationProperty Name="Model" Relationship="Self.FK_Vehicles_Models" FromRole="Vehicles" ToRole="Models" />
           <NavigationProperty Name="ServiceBookings" Relationship="Self.FK_ServiceBookings_Vehicles" FromRole="Vehicles" ToRole="ServiceBookings" />
@@ -881,6 +883,7 @@
                 <ScalarProperty Name="FuelType" ColumnName="FuelType" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

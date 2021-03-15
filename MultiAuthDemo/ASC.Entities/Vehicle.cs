@@ -25,6 +25,8 @@ namespace ASC.Entities
         [Display(Name = "Model")]
         public int ModelId { get; set; }
 
+        public bool IsActive { get; set; }
+
         public virtual Customer Customer { get; set; }
         public virtual Model Model { get; set; }
     }

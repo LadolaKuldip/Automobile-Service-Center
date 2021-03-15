@@ -1,6 +1,11 @@
 ﻿@model ASC.Entities.Service
+@{
 
-
+    List<SelectListItem> items = new List<SelectListItem>();
+    items.Add(new SelectListItem { Text = "Body Parts", Value = "Body Parts" });
+    items.Add(new SelectListItem { Text = "Outer body", Value = "Outer body" });
+    items.Add(new SelectListItem { Text = "Mechanical Parts", Value = "Mechanical Parts" });
+}
 <div class="modal-content">
     <div class="form-horizontal">
         @using (Html.BeginForm("Edit", "Service", FormMethod.Post))
@@ -32,7 +37,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.Type, new SelectList(items, "Value", "Text"), "Select", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
                     </div>
                 </div>

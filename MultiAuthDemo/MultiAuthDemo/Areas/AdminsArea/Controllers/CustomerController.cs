@@ -85,7 +85,6 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Customer>("Create", customer);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -115,6 +114,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Dealer/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Customer/Get/" + id);
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -147,7 +147,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
 
         }
 
-        // POST: AdminsArea/Customer/Edit/5
+        // POST: AdminsArea/Customer/Edit
         [HttpPost]
         public ActionResult Edit(Customer customer)
         {

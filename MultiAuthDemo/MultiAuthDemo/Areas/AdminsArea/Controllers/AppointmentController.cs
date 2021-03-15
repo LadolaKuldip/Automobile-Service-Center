@@ -41,7 +41,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return View(serviceBookings);
         }
 
-        // GET: AdminsArea/Appointment/Create
+        // GET: AdminsArea/Appointment/Create [?searchData=""]
         public ActionResult Create(string searchData)
         {
             ServiceBooking serviceBooking = new ServiceBooking();
@@ -54,6 +54,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Dealer/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Service/Get");
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -110,7 +111,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return View(appointment);
         }
 
-
+        // POST: AdminsArea/Appointment/Create
         [HttpPost]
         public ActionResult Create(ServiceBooking ServiceBooking,int[] servicesIds)
         {      
@@ -133,7 +134,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     if (result.IsSuccessStatusCode)
                     {
                         TempData["Type"] = 0;
-                        TempData["Message"] = "Model Added successfully";
+                        TempData["Message"] = "Appointment Added successfully";
                         return RedirectToAction("Index");
                     }
                 }

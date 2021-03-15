@@ -14,6 +14,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
+
+        //CREATE Model in DATABASE
         public string CreateModel(Model model)
         {
             try
@@ -40,6 +42,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //SOFT DELETE Model from DATABASE
         public string DeleteModel(int id)
         {
             var entity = _DbContext.Models.Where(x => x.Id == id).FirstOrDefault();
@@ -59,6 +62,7 @@ namespace ACS.DAL.Repository.Classes
             return "null";
         }
 
+        //EDIT Model in DATABASE
         public string EditModel(Model model)
         {
             try
@@ -81,6 +85,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET all Models of Brand
         public IEnumerable<Model> GetbyBrand(int id)
         {
             List<Model> models = new List<Model>();
@@ -98,6 +103,7 @@ namespace ACS.DAL.Repository.Classes
             return models;
         }
 
+        //GET single Model By Id
         public Model GetModel(int id)
         {
             Model model;
@@ -114,6 +120,7 @@ namespace ACS.DAL.Repository.Classes
             return model;
         }
 
+        //GET all Models
         public IEnumerable<Model> GetModels()
         {
             List<Model> models = new List<Model>();

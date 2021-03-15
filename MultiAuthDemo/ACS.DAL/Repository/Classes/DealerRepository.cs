@@ -14,6 +14,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
+
+        //CREATE Dealer in DATABASE
         public string CreateDealer(Dealer dealer)
         {
             try
@@ -40,6 +42,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //SOFT DELETE Dealer from DATABASEs
         public string DeleteDealer(int id)
         {
             var entity = _DbContext.Dealers.Where(x => x.Id == id).FirstOrDefault();
@@ -59,6 +62,7 @@ namespace ACS.DAL.Repository.Classes
             return "null";
         }
 
+        //EDIT Dealer in DATABASE
         public string EditDealer(Dealer dealer)
         {
             try
@@ -84,6 +88,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET single Dealer By Id
         public Dealer GetDealer(int id)
         {
             Dealer dealer;
@@ -100,6 +105,7 @@ namespace ACS.DAL.Repository.Classes
             return dealer;
         }
 
+        //GET all Dealers
         public List<Dealer> GetDealers()
         {
             List<Dealer> dealers = new List<Dealer>();

@@ -11,6 +11,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
     [Authorize(Roles = "Admin")]
     public class ModelController : Controller
     {
+        // GET: AdminsArea/Model
         public ActionResult Index()
         {
             IEnumerable<Model> models;
@@ -40,13 +41,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return View(models);
         }
 
-        // GET: AdminsArea/Brand/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AdminsArea/Brand/Create
+        // GET: AdminsArea/Model/Create
         public ActionResult Create()
         {
             IEnumerable<Brand> brands;
@@ -77,7 +72,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return PartialView(entity);
         }
 
-        // POST: AdminsArea/Brand/Create
+        // POST: AdminsArea/Model/Create
         [HttpPost]
         public ActionResult Create(Model modelData)
         {
@@ -90,7 +85,6 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Model>("Create", modelData);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -110,7 +104,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             }
         }
 
-        // GET: AdminsArea/Brand/Edit/5
+        // GET: AdminsArea/Model/Edit/5
         public ActionResult Edit(int id)
         {
             IEnumerable<Brand> brands;
@@ -120,6 +114,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Brand/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Model/Get/" + id);
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -152,7 +147,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             
         }
 
-        // POST: AdminsArea/Brand/Edit/5
+        // POST: AdminsArea/Model/Edit/5
         [HttpPost]
         public ActionResult Edit(Model modelData)
         {
@@ -184,7 +179,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             }
         }
 
-        // GET: AdminsArea/Brand/Delete/5
+        // GET: AdminsArea/Model/Delete/5
         public ActionResult Delete(int id)
         {
             using (var client = new HttpClient())

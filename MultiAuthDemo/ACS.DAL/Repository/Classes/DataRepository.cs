@@ -16,6 +16,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
+
+        //GET Numaric Details for Admin
         public IndexCounts GetAdminIndex()
         {
             IndexCounts indexCounts = new IndexCounts();
@@ -26,6 +28,7 @@ namespace ACS.DAL.Repository.Classes
             return indexCounts;
         }
 
+        //GET Numaric Details for Dealer
         public IndexCounts GetDealerIndex(string userId)
         {
             IndexCounts indexCounts = new IndexCounts();

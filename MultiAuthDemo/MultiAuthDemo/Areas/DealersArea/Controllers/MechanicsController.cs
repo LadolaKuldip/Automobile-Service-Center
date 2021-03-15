@@ -11,7 +11,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
 {
     public class MechanicsController : Controller
     {
-        // GET: AdminsArea/Mechanics
+        // GET: DealersAreas/Mechanics
         public ActionResult Index()
         {
             IEnumerable<Mechanic> mechanics;
@@ -41,7 +41,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             return View(mechanics);
         }
 
-        // GET: AdminsArea/Mechanics/Create
+        // GET: DealersAreas/Mechanics/Create
         public ActionResult Create()
         {
             IEnumerable<Dealer> dealers;
@@ -72,7 +72,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             return PartialView(entity);
         }
 
-        // POST: AdminsArea/Mechanics/Create
+        // POST: DealersAreas/Mechanics/Create
         [HttpPost]
         public ActionResult Create(Mechanic mechanic)
         {
@@ -85,7 +85,6 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Mechanic>("Create", mechanic);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -105,7 +104,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             }
         }
 
-        // GET: AdminsArea/Mechanics/Edit/5
+        // GET: DealersAreas/Mechanics/Edit/5
         public ActionResult Edit(int id)
         {
             IEnumerable<Dealer> dealers;
@@ -115,6 +114,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Dealer/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Mechanic/Get/" + id);
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -147,7 +147,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
 
         }
 
-        // POST: AdminsArea/Mechanics/Edit/5
+        // POST: DealersAreas/Mechanics/Edit/5
         [HttpPost]
         public ActionResult Edit(Mechanic mechanic)
         {
@@ -179,7 +179,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
             }
         }
 
-        // GET: AdminsArea/Mechanics/Delete/5
+        // GET: DealersAreas/Mechanics/Delete/5
         public ActionResult Delete(int id)
         {
             using (var client = new HttpClient())

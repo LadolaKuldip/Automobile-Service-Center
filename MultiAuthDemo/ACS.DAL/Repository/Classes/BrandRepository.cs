@@ -14,7 +14,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
-
+        
+        //GET all Brands
         public IEnumerable<Brand> GetBrands()
         {
             List<Brand> brands = new List<Brand>();
@@ -31,6 +32,7 @@ namespace ACS.DAL.Repository.Classes
             return brands;
         }
 
+        //CREATE Brand in DATABASE
         public string CreateBrand(Brand brand)
         {
             try
@@ -57,6 +59,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET single Brand By Id
         public Brand GetBrand(int id)
         {
             Brand brand;
@@ -73,6 +76,7 @@ namespace ACS.DAL.Repository.Classes
             return brand;
         }
 
+        //EDIT Brand in DATABASE
         public string EditBrand(Brand brand)
         {
             try
@@ -94,6 +98,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //SOFT DELETE Brand from DATABASE
         public string DeleteBrand(int id)
         {
             var entity = _DbContext.Brands.Where(x => x.Id == id).FirstOrDefault();

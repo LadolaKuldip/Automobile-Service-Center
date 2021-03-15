@@ -14,6 +14,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
+
+        //CREATE Vehicle in DATABASE
         public string CreateVehicle(Vehicle vehicle)
         {
             try
@@ -48,19 +50,27 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
-
+        //DELETE Vehicle from DATABASE
         public string DeleteVehicle(int id)
         {
-            var res = _DbContext.Vehicles.Find(id);
-            if (res != null )
+            var entity = _DbContext.Vehicles.Find(id);
+            if (entity != null)
             {
-                _DbContext.Vehicles.Remove(res);
+                if (entity.IsActive == true)
+                {
+                    entity.IsActive = false;
+                }
+                else
+                {
+                    entity.IsActive = true;
+                }
                 _DbContext.SaveChanges();
                 return "deleted";
             }
-            return "not";
+            return "null";
         }
 
+        //EDIT Vehicle in DATABASE
         public string EditVehicle(Vehicle vehicle)
         {
             try
@@ -88,6 +98,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET all Vehicles of Customers under Dealer
         public IEnumerable<Vehicle> GetDealerVehicles(string userId)
         {
             List<Vehicle> vehicles = new List<Vehicle>();
@@ -105,6 +116,7 @@ namespace ACS.DAL.Repository.Classes
             return vehicles;
         }
 
+        //GET single Vehicle By Id
         public Vehicle GetVehicle(int id)
         {
             Vehicle vehicle;
@@ -121,6 +133,7 @@ namespace ACS.DAL.Repository.Classes
             return vehicle;
         }
 
+        //GET all Vehicles
         public IEnumerable<Vehicle> GetVehicles()
         {
             List<Vehicle> vehicles = new List<Vehicle>();
@@ -138,6 +151,7 @@ namespace ACS.DAL.Repository.Classes
             return vehicles;
         }
 
+        //GET all Vehicles of Customer
         public IEnumerable<Vehicle> GetVehiclesOfUser(string userId)
         {
             List<Vehicle> vehicles = new List<Vehicle>();

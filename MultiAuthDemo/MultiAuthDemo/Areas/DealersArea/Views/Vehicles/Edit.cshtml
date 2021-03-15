@@ -2,7 +2,14 @@
 
 @{
     ViewBag.Title = "Edit";
+
+    List<SelectListItem> items = new List<SelectListItem>();
+    items.Add(new SelectListItem { Text = "Petrol", Value = "Petrol" });
+    items.Add(new SelectListItem { Text = "Diesel", Value = "Diesel" });
+    items.Add(new SelectListItem { Text = "Gas", Value = "Gas" });
+    items.Add(new SelectListItem { Text = "Electric", Value = "Electric" });
 }
+
 
 <div class="modal-content">
     <div class="form-horizontal">
@@ -58,7 +65,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.vehicle.FuelType, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.vehicle.FuelType, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.vehicle.FuelType, new SelectList(items, "Value", "Text"), "Select", new { id = "myDropDownlistID4", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.vehicle.FuelType, "", new { @class = "text-danger" })
                     </div>
 
@@ -101,6 +108,7 @@
     $(document).ready(function () {
         $("#myDropDownlistID").select2();
         $("#myDropDownlistID3").select2();
+        $("#myDropDownlistID4").select2();
     });
 </script>
 <script>

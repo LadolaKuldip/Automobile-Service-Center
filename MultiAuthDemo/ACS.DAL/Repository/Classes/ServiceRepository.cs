@@ -15,6 +15,7 @@ namespace ACS.DAL.Repository.Classes
             _DbContext = new Database.SampleDBEntities();
         }
 
+        //CREATE Service in DATABASE
         public string CreateService(Service service)
         {
             try
@@ -41,6 +42,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //SOFT DELETE Service from DATABASE
         public string DeleteService(int id)
         {
             var entity = _DbContext.Services.Where(x => x.Id == id).FirstOrDefault();
@@ -60,6 +62,7 @@ namespace ACS.DAL.Repository.Classes
             return "null";
         }
 
+        //EDIT Service in DATABASE
         public string EditService(Service service)
         {
             try
@@ -84,6 +87,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET single Service By Id
         public Service GetService(int id)
         {
             Service service;
@@ -100,6 +104,7 @@ namespace ACS.DAL.Repository.Classes
             return service;
         }
 
+        //GET all Services
         public IEnumerable<Service> GetServices()
         {
             List<Service> services = new List<Service>();

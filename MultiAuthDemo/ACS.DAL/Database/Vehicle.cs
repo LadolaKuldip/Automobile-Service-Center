@@ -29,6 +29,7 @@ namespace ACS.DAL.Database
         public string FuelType { get; set; }
         public int CustomerId { get; set; }
         public int ModelId { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Model Model { get; set; }

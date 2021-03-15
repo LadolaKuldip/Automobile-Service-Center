@@ -17,6 +17,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
+
+        //CREATE ServiceBooking in DATABASE
         public string AddBooking(ServiceBookingModel serviceBookingModel)
         {
             try
@@ -53,6 +55,8 @@ namespace ACS.DAL.Repository.Classes
 
                     entity.TotalAmmount = totalAmmount;
                     _DbContext.SaveChanges();
+
+                    //Send mail of Appointment Booking to User
 
                     string FilePath = "D:/Projects/BookinMail.html";
                     StreamReader str = new StreamReader(FilePath);
@@ -100,6 +104,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET all ServiceBookings
         public IEnumerable<ServiceBooking> GetBookings()
         {
             List<ServiceBooking> serviceBookings = new List<ServiceBooking>();
@@ -117,6 +122,7 @@ namespace ACS.DAL.Repository.Classes
             return serviceBookings;
         }
 
+        //GET all ServiceBookings of Dealer
         public IEnumerable<ServiceBooking> GetDealerBookings(string userId)
         {
             List<ServiceBooking> serviceBookings = new List<ServiceBooking>();
@@ -134,6 +140,7 @@ namespace ACS.DAL.Repository.Classes
             return serviceBookings;
         }
 
+        //GET single ServiceBooking Details By Id
         public ServiceBookingDetailModel GetDetail(int id)
         {
             ServiceBooking serviceBooking;
@@ -163,6 +170,7 @@ namespace ACS.DAL.Repository.Classes
             return model;
         }
 
+        //GET all ServiceBookings of User
         public IEnumerable<ServiceBooking> GetUserBookings(string userId)
         {
             List<ServiceBooking> serviceBookings = new List<ServiceBooking>();

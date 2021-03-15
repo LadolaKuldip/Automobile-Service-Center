@@ -41,12 +41,6 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return View(brands);
         }
 
-        // GET: AdminsArea/Brand/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: AdminsArea/Brand/Create
         public ActionResult Create()
         {
@@ -67,7 +61,6 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Brand>("Create", brand);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)

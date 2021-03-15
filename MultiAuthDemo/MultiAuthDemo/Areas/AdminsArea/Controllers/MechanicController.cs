@@ -85,13 +85,12 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Mechanic>("Create", mechanic);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
                         TempData["Type"] = 0;
-                        TempData["Message"] = "Customer Added successfully";
+                        TempData["Message"] = "Mechanic Added successfully";
                         return RedirectToAction("Index");
                     }
                 }
@@ -115,6 +114,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 client.BaseAddress = new Uri("https://localhost:44318/");
                 //HTTP GET
                 var responseTask = client.GetAsync("Dealer/Get");
+                //HTTP GET
                 var responseTask2 = client.GetAsync("Mechanic/Get/" + id);
                 responseTask.Wait();
                 responseTask2.Wait();
@@ -147,7 +147,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
 
         }
 
-        // POST: AdminsArea/Mechanic/Edit/5
+        // POST: AdminsArea/Mechanic/Edit
         [HttpPost]
         public ActionResult Edit(Mechanic mechanic)
         {
@@ -165,7 +165,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     if (result.IsSuccessStatusCode)
                     {
                         TempData["Type"] = 1;
-                        TempData["Message"] = "Customer Edited successfully";
+                        TempData["Message"] = "Mechanic Edited successfully";
                         return RedirectToAction("Index");
                     }
                 }
@@ -194,7 +194,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                 if (result.IsSuccessStatusCode)
                 {
                     TempData["Type"] = 1;
-                    TempData["Message"] = "Customer Status Changed successfully";
+                    TempData["Message"] = "Mechanic Status Changed successfully";
                     return RedirectToAction("Index");
                 }
             }

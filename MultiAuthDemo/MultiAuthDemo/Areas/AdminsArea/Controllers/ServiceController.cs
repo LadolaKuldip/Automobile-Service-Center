@@ -40,7 +40,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             return View(services);
         }
 
-        // GET: AdminsArea/Brand/Create
+        // GET: AdminsArea/Service/Create
         public ActionResult Create()
         {
             Service service = new Service();
@@ -60,7 +60,6 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Service>("Create", service);
                     postTask.Wait();
-                    /*var post = client.PostAsJsonAsync<Vehicle>("Vehicle/Create", vehicle).Result;*/
 
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -126,7 +125,7 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
                     if (result.IsSuccessStatusCode)
                     {
                         TempData["Type"] = 1;
-                        TempData["Message"] = "Brand Edited successfully";
+                        TempData["Message"] = "Service Edited successfully";
                         return RedirectToAction("Index");
                     }
                 }

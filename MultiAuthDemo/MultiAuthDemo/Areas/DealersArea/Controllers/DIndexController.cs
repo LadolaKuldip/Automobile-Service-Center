@@ -9,7 +9,7 @@ namespace MultiAuthDemo.Areas.DealersArea.Controllers
     [Authorize(Roles = "Dealer")]
     public class DIndexController : Controller
     {
-        // GET: DealersArea/DIndex
+        // GET: DealersAreas/DIndex
         public ActionResult Index()
         {
             IndexCounts counts;

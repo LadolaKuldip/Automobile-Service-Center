@@ -14,6 +14,8 @@ namespace ACS.DAL.Repository.Classes
         {
             _DbContext = new Database.SampleDBEntities();
         }
+
+        //CREATE Mechanic in DATABASE
         public string CreateMechanic(Mechanic mechanic)
         {
             try
@@ -40,6 +42,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //SOFT DELETE Mechanic from DATABASE
         public string DeleteMechanic(int id)
         {
             var entity = _DbContext.Mechanics.Where(x => x.Id == id).FirstOrDefault();
@@ -59,6 +62,7 @@ namespace ACS.DAL.Repository.Classes
             return "null";
         }
 
+        //EDIT Mechanic in DATABASE
         public string EditMechanic(Mechanic mechanic)
         {
             try
@@ -83,6 +87,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET all Mechanics of Dealer
         public List<Mechanic> GetDealerMechanics(string userId)
         {
             List<Mechanic> mechanics = new List<Mechanic>();
@@ -99,6 +104,7 @@ namespace ACS.DAL.Repository.Classes
             return mechanics;
         }
 
+        //GET single Mechanic By Id
         public Mechanic GetMechanic(int id)
         {
             Mechanic mechanic;
@@ -115,6 +121,7 @@ namespace ACS.DAL.Repository.Classes
             return mechanic;
         }
 
+        //GET all Mechanics
         public List<Mechanic> GetMechanics()
         {
             List<Mechanic> mechanics = new List<Mechanic>();

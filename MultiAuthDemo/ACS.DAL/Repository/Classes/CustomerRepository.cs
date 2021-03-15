@@ -16,6 +16,7 @@ namespace ACS.DAL.Repository.Classes
             _DbContext = new Database.SampleDBEntities();
         }
 
+        //CREATE Customer in DATABASE
         public string CreateCustomer(Customer customer)
         {
             try
@@ -42,6 +43,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //SOFT DELETE Customer from DATABASE
         public string DeleteCustomer(int id)
         {
             var entity = _DbContext.Customers.Where(x => x.Id == id).FirstOrDefault();
@@ -61,6 +63,7 @@ namespace ACS.DAL.Repository.Classes
             return "null";
         }
 
+        //EDIT Customer in DATABASE
         public string EditCustomer(Customer customer)
         {
             try
@@ -87,6 +90,7 @@ namespace ACS.DAL.Repository.Classes
             }
         }
 
+        //GET single Customer By Id
         public Customer GetCustomer(int id)
         {
             Customer customer;
@@ -103,6 +107,7 @@ namespace ACS.DAL.Repository.Classes
             return customer;
         }
 
+        //GET all Customer with Vehicles by Email/Phone
         public CustomerVehicles GetCustomer(string input)
         {
             CustomerVehicles customerVehicles;
@@ -138,6 +143,7 @@ namespace ACS.DAL.Repository.Classes
             return customerVehicles;
         }
 
+        //GET all Customers
         public IEnumerable<Customer> GetCustomers()
         {
             List<Customer> customers = new List<Customer>();
@@ -154,6 +160,7 @@ namespace ACS.DAL.Repository.Classes
             return customers;
         }
 
+        //GET all Customers of Dealer
         public IEnumerable<Customer> GetDealerCustomers(string userId)
         {
             List<Database.Customer> list = _DbContext.Customers.Where(x => x.Dealer.UserId == userId).ToList();
@@ -170,6 +177,7 @@ namespace ACS.DAL.Repository.Classes
             return customers;
         }
 
+        //GET single Customer By Id
         public Customer GetUserId(string userId)
         {
             Database.Customer entity = _DbContext.Customers.Include("Dealer").Where(x => x.UserId == userId).FirstOrDefault();

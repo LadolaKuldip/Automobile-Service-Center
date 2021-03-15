@@ -143,6 +143,7 @@
           <ScalarProperty Name="FuelType" ColumnName="FuelType" />
           <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
