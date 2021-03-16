@@ -116,6 +116,7 @@
           <ScalarProperty Name="Feedback" ColumnName="Feedback" />
           <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
           <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+          <ScalarProperty Name="MechanicId" ColumnName="MechanicId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

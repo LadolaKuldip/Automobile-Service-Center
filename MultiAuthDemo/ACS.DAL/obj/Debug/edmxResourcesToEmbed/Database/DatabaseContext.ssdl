@@ -115,6 +115,7 @@
     <Property Name="Feedback" Type="nvarchar" MaxLength="250" />
     <Property Name="VehicleId" Type="int" Nullable="false" />
     <Property Name="DealerId" Type="int" Nullable="false" />
+    <Property Name="MechanicId" Type="int" />
   </EntityType>
   <EntityType Name="Services">
     <Key>
@@ -230,18 +231,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SelectedServices_ServiceBookings">
-    <End Role="ServiceBookings" Type="Self.ServiceBookings" Multiplicity="1" />
-    <End Role="SelectedServices" Type="Self.SelectedServices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ServiceBookings">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SelectedServices">
-        <PropertyRef Name="ServiceBookingId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SelectedServices_Services">
     <End Role="Services" Type="Self.Services" Multiplicity="1" />
     <End Role="SelectedServices" Type="Self.SelectedServices" Multiplicity="*" />
@@ -263,6 +252,18 @@
       </Principal>
       <Dependent Role="ServiceBookings">
         <PropertyRef Name="DealerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceBookings_Mechanics">
+    <End Role="Mechanics" Type="Self.Mechanics" Multiplicity="0..1" />
+    <End Role="ServiceBookings" Type="Self.ServiceBookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mechanics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ServiceBookings">
+        <PropertyRef Name="MechanicId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -344,16 +345,16 @@
       <End Role="Brands" EntitySet="Brands" />
       <End Role="Models" EntitySet="Models" />
     </AssociationSet>
-    <AssociationSet Name="FK_SelectedServices_ServiceBookings" Association="Self.FK_SelectedServices_ServiceBookings">
-      <End Role="ServiceBookings" EntitySet="ServiceBookings" />
-      <End Role="SelectedServices" EntitySet="SelectedServices" />
-    </AssociationSet>
     <AssociationSet Name="FK_SelectedServices_Services" Association="Self.FK_SelectedServices_Services">
       <End Role="Services" EntitySet="Services" />
       <End Role="SelectedServices" EntitySet="SelectedServices" />
     </AssociationSet>
     <AssociationSet Name="FK_ServiceBookings_Dealers" Association="Self.FK_ServiceBookings_Dealers">
       <End Role="Dealers" EntitySet="Dealers" />
+      <End Role="ServiceBookings" EntitySet="ServiceBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceBookings_Mechanics" Association="Self.FK_ServiceBookings_Mechanics">
+      <End Role="Mechanics" EntitySet="Mechanics" />
       <End Role="ServiceBookings" EntitySet="ServiceBookings" />
     </AssociationSet>
     <AssociationSet Name="FK_ServiceBookings_Vehicles" Association="Self.FK_ServiceBookings_Vehicles">

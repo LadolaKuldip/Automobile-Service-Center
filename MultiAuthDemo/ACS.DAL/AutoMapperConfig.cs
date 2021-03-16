@@ -77,6 +77,9 @@ namespace ACS.DAL
             cfg.CreateMap<Dealer, Database.Dealer>();
             cfg.CreateMap<Database.Dealer, Dealer>();
 
+            cfg.CreateMap<Mechanic, Database.Mechanic>();
+            cfg.CreateMap<Database.Mechanic, Mechanic>();
+
             cfg.CreateMap<Vehicle, Database.Vehicle>();
             cfg.CreateMap<Database.Vehicle, Vehicle>();
 

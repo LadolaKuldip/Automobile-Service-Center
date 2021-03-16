@@ -49,6 +49,7 @@
     <Compile Include="ModelFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBookingDetailModel.cs" />
+    <Compile Include="ServiceBookingEditModel.cs" />
     <Compile Include="ServiceBookingModel.cs" />
     <Compile Include="VehicleFormModel.cs" />
   </ItemGroup>

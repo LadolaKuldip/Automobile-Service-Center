@@ -14,12 +14,6 @@ namespace ACS.DAL.Database
     
     public partial class ServiceBooking
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceBooking()
-        {
-            this.SelectedServices = new HashSet<SelectedService>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime BookingDate { get; set; }
         public Nullable<System.DateTime> ReturnDate { get; set; }
@@ -30,10 +24,10 @@ namespace ACS.DAL.Database
         public string Feedback { get; set; }
         public int VehicleId { get; set; }
         public int DealerId { get; set; }
+        public Nullable<int> MechanicId { get; set; }
     
         public virtual Dealer Dealer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SelectedService> SelectedServices { get; set; }
+        public virtual Mechanic Mechanic { get; set; }
         public virtual Vehicle Vehicle { get; set; }
     }
 }

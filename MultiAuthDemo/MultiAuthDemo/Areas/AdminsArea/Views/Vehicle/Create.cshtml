@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.vehicle.RegistrationDate, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.vehicle.RegistrationDate, new { htmlAttributes = new { @class = "form-control" ,type="date" } })
+                        @Html.EditorFor(model => model.vehicle.RegistrationDate, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.vehicle.RegistrationDate, "", new { @class = "text-danger" })
                     </div>
 
@@ -54,7 +54,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.vehicle.LastServiceDate, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.vehicle.LastServiceDate, new { htmlAttributes = new { @class = "form-control" ,type="date" } })
+                        @Html.EditorFor(model => model.vehicle.LastServiceDate, new { htmlAttributes = new { @class = "form-control"} })
                         @Html.ValidationMessageFor(model => model.vehicle.LastServiceDate, "", new { @class = "text-danger" })
                     </div>
 
@@ -79,10 +79,8 @@
                     @Html.LabelFor(model => model.vehicle.Model.BrandId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
                     <div class="col-md-8">
 
-                        @Html.DropDownListFor(model => model.vehicle.Model.BrandId, new SelectList(Model.brands, "Id", "Name"), "Select", new { id = "myDropDownlistID3", @class = "form-control col-md-10" })
+                        @Html.DropDownListFor(model => model.vehicle.Model.BrandId, new SelectList(Model.brands, "Id", "Name"), "Select", new { id = "myDropDownlistID3", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.vehicle.Model.BrandId, "", new { @class = "text-danger" })
-
-                        <button class="btn btn-sm btn-primary" type="button" id="BtnModelDD" style="margin-left: 1rem;"><i class="fas fa-search"></i></button>
 
                     </div>
 
@@ -111,7 +109,7 @@
 </script>
     <script>
         $(document).ready(function () {
-            $("#BtnModelDD").click(function (evt) {
+            $("#myDropDownlistID3").change(function (evt) {
                 var CatID = $('#myDropDownlistID3').val();
                   $.get('@Url.Action("CreateDropdown", "Vehicle")?id=' + CatID, function(data) {
                     $('#ModelDD').html(data);

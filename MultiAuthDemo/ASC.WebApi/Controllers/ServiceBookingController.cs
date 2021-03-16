@@ -1,5 +1,6 @@
 ﻿using ASC.BAL.Repository.Interfaces;
 using ASC.Common;
+using ASC.Entities;
 using System.Web.Http;
 
 namespace ASC.WebApi.Controllers
@@ -30,6 +31,18 @@ namespace ASC.WebApi.Controllers
         public IHttpActionResult GetDetail(int id)
         {
             var response = _serviceBookingManager.GetDetail(id);
+            if (response == null)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("GetBooking/{id}")]
+        public IHttpActionResult GetBooking(int id)
+        {
+            var response = _serviceBookingManager.GetBooking(id);
             if (response == null)
             {
                 return InternalServerError();
@@ -71,6 +84,18 @@ namespace ASC.WebApi.Controllers
                 return Conflict();
             }
             else if (response != "created")
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("Edit")]
+        public IHttpActionResult Edit(ServiceBooking serviceBooking)
+        {
+            string response = _serviceBookingManager.EditBooking(serviceBooking);
+            if (response != "updated")
             {
                 return InternalServerError();
             }

@@ -41,7 +41,7 @@
                             </th>
 
                             <th>
-                                @Html.DisplayNameFor(model => model.DealerId)
+                                @Html.DisplayNameFor(model => model.MechanicId)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Status)
@@ -75,7 +75,7 @@
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Dealer.Name)
+                                    @Html.DisplayFor(modelItem => item.Mechanic.Name)
                                 </td>
                                 <td>
                                     @if (item.Status.Equals("Pending"))
@@ -127,7 +127,7 @@
                                 @Html.DisplayNameFor(model => model.VehicleId)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DealerId)
+                                @Html.DisplayNameFor(model => model.MechanicId)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Status)

@@ -19,6 +19,16 @@ namespace ASC.BAL.Repository.Classes
             return _serviceBookingRepository.AddBooking(serviceBookingModel);
         }
 
+        public string EditBooking(ServiceBooking serviceBooking)
+        {
+            return _serviceBookingRepository.EditBooking(serviceBooking);
+        }
+
+        public ServiceBookingEditModel GetBooking(int id)
+        {
+            return _serviceBookingRepository.GetBooking(id);
+        }
+
         public IEnumerable<ServiceBooking> GetBookings()
         {
             return _serviceBookingRepository.GetBookings();

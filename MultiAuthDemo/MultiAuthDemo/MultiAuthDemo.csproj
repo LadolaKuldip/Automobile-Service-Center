@@ -323,6 +323,8 @@
     <Content Include="Areas\DealersArea\Views\Mechanics\Edit.cshtml" />
     <Content Include="Areas\AdminsArea\Views\Vehicle\CreateDropdown.cshtml" />
     <Content Include="Areas\DealersArea\Views\Vehicles\CreateDropdown.cshtml" />
+    <Content Include="Areas\AdminsArea\Views\Appointment\Edit.cshtml" />
+    <Content Include="Areas\DealersArea\Views\Appointments\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

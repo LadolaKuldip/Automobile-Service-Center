@@ -14,6 +14,12 @@ namespace ACS.DAL.Database
     
     public partial class Mechanic
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mechanic()
+        {
+            this.ServiceBookings = new HashSet<ServiceBooking>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
@@ -22,5 +28,7 @@ namespace ACS.DAL.Database
         public bool IsActive { get; set; }
     
         public virtual Dealer Dealer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceBooking> ServiceBookings { get; set; }
     }
 }

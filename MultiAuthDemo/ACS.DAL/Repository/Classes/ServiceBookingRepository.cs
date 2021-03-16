@@ -50,7 +50,7 @@ namespace ACS.DAL.Repository.Classes
 
                         totalAmmount += service.Amount;
 
-                        htmlContentService += "<tr><td>" + service.Name + "</td><td>" + service.Amount + "</td></tr>";
+                        htmlContentService += "<tr><td>" + service.Name + "</td><td>&nbsp;</td><td>" + service.Amount + "</td></tr>";
                     }
 
                     entity.TotalAmmount = totalAmmount;
@@ -79,7 +79,7 @@ namespace ACS.DAL.Repository.Classes
                     str.Close();
 
                     MailMessage mail = new MailMessage();
-                    mail.To.Add("parthnonghanvadra@gmail.com");
+                    mail.To.Add("arjun.chandarana.ac@gmail.com");
                     mail.From = new MailAddress("automobile.onthego@gmail.com");
                     mail.Subject = "Appontment Booked";
                     string Body = MailText;
@@ -102,6 +102,64 @@ namespace ACS.DAL.Repository.Classes
             {
                 return ex.Message;
             }
+        }
+
+        //Edit ServiceBooking in DATABASE
+        public string EditBooking(ServiceBooking serviceBooking)
+        {
+            try
+            {
+                var entity = _DbContext.ServiceBookings.Where(x => x.Id == serviceBooking.Id).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.BookingDate = serviceBooking.BookingDate;
+                    entity.ReturnDate = serviceBooking.ReturnDate;
+                    entity.TotalAmmount = serviceBooking.TotalAmmount;
+                    entity.Status = serviceBooking.Status;
+                    entity.DropAddress   = serviceBooking.DropAddress;
+                    entity.PickupAddress = serviceBooking.PickupAddress;
+                    entity.MechanicId = serviceBooking.MechanicId;
+                    entity.VehicleId = serviceBooking.VehicleId;
+                    entity.DealerId = serviceBooking.DealerId;
+                    _DbContext.SaveChanges();
+                    return "updated";
+                }
+                return "null";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public ServiceBookingEditModel GetBooking(int id)
+        {
+            ServiceBooking serviceBooking;
+            List<Mechanic> mechanics = new List<Mechanic>();
+
+            Database.ServiceBooking entity = _DbContext.ServiceBookings.Include("Dealer").Include("Vehicle").Where(x => x.Id == id).FirstOrDefault();
+            if (entity != null)
+            {
+                serviceBooking = AutoMapperConfig.ServiceBookingMapper.Map<ServiceBooking>(entity);
+
+                IEnumerable<Database.Mechanic> entities = _DbContext.Mechanics.Where(x => x.DealerId == entity.DealerId).ToList();
+                foreach (var item in entities)
+                {
+                    Mechanic mechanic = AutoMapperConfig.MechanicMapper.Map<Mechanic>(item);
+                    mechanics.Add(mechanic);
+                }
+            }
+            else
+            {
+                serviceBooking = null;
+                mechanics = null;
+            }
+            ServiceBookingEditModel model = new ServiceBookingEditModel
+            {
+                ServiceBooking = serviceBooking,
+                mechanics = mechanics
+            };
+            return model;
         }
 
         //GET all ServiceBookings

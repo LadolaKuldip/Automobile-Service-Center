@@ -12,9 +12,13 @@ namespace ASC.Entities
         public string NumberPlate { get; set; }
         public string ChassisNumber { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Reg. Date")]
         public System.DateTime RegistrationDate { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Last Service")]
         public Nullable<System.DateTime> LastServiceDate { get; set; }
         public string FuelType { get; set; }

@@ -149,6 +149,67 @@ namespace MultiAuthDemo.Areas.AdminsArea.Controllers
             
         }
 
+        // GET:  AdminsArea/Appointment/Edit/5
+        public ActionResult Edit(int id)
+        {
+            ServiceBookingEditModel model = new ServiceBookingEditModel();
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("https://localhost:44318/ServiceBooking/");
+                //HTTP GET
+                var responseTask = client.GetAsync("GetBooking/" + id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<ServiceBookingEditModel>();
+                    readTask.Wait();
+                    model = readTask.Result;
+                }
+                else
+                {
+                    model = null;
+                    ModelState.AddModelError(string.Empty, "Server error occured while retriving data");
+                }
+            }
+
+            return PartialView(model);
+        }
+
+        // POST: AdminsArea/Appointment/Edit
+        [HttpPost]
+        public ActionResult Edit(ServiceBooking ServiceBooking)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:44318/ServiceBooking/");
+
+                    //HTTP PUT
+                    var putTask = client.PutAsJsonAsync<ServiceBooking>("Edit", ServiceBooking);
+                    putTask.Wait();
+
+                    var result = putTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        TempData["Type"] = 1;
+                        TempData["Message"] = "Appointment Edited successfully";
+                        return RedirectToAction("Index");
+                    }
+                }
+                TempData["Type"] = 2;
+                TempData["Message"] = "Error Occured While Updating";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: AdminsArea/Appointment/Details/5
         public ActionResult Details(int id)
         {
